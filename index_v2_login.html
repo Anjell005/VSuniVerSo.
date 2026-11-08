@@ -1,0 +1,2320 @@
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VS uniVerSo</title>
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+body {
+
+min-height: 100vh;
+
+display: flex;
+
+justify-content: center;
+
+align-items: flex-start;
+
+padding: 30px 0;
+
+overflow-y: auto;
+
+font-family: Arial, sans-serif;
+background: linear-gradient(
+135deg,
+#fff9e8,
+#ffeef5,
+#f4efff
+);
+color: #40384a;
+}
+.pantalla {
+display: none;
+width: 90%;
+max-width: 430px;
+text-align: center;
+padding: 45px 30px;
+background: rgba(255, 255, 255, 0.82);
+border-radius: 30px;
+box-shadow:
+0 10px 30px rgba(80, 60, 90, 0.12);
+}
+/* Al abrir la página, solo debe verse Bienvenida. Las demás pantallas se muestran desde la navegación. */
+#bienvenida { display: block; }
+
+/* =========================
+LOGO
+========================== */
+.logo {
+font-size: 72px;
+font-weight: bold;
+line-height: 1;
+margin-bottom: 12px;
+}
+.v {
+color: #f6d875;
+}
+.s {
+color: #efa8c5;
+}
+.universo {
+font-size: 35px;
+margin-bottom: 18px;
+color: #554c5e;
+}
+/* =========================
+BIENVENIDA
+========================== */
+#bienvenida {
+display: block;
+}
+.titulo {
+font-size: 30px;
+font-weight: 500;
+letter-spacing: 2px;
+margin-bottom: 25px;
+}
+.frase {
+font-size: 16px;
+font-style: italic;
+margin-bottom: 35px;
+color: #756b7d;
+}
+/* =========================
+BOTONES
+========================== */
+.boton {
+display: block;
+width: 80%;
+margin: 14px auto;
+padding: 14px;
+border: none;
+border-radius: 25px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+}
+.iniciar {
+background: #f6d875;
+color: #40384a;
+}
+.crear {
+background: #efa8c5;
+color: white;
+}
+.boton:hover {
+transform: scale(1.03);
+}
+.lema {
+margin-top: 35px;
+font-size: 15px;
+color: #756b7d;
+}
+/* =========================
+LOGIN
+========================== */
+#login {
+display: none;
+}
+.titulo-pantalla {
+font-size: 30px;
+margin-bottom: 12px;
+}
+.subtitulo {
+color: #756b7d;
+margin-bottom: 30px;
+}
+.campo {
+width: 90%;
+margin: 12px auto;
+text-align: left;
+}
+.campo label {
+display: block;
+margin-bottom: 6px;
+font-size: 14px;
+}
+.campo input {
+width: 100%;
+padding: 13px 15px;
+border: 1px solid #e4dce5;
+border-radius: 20px;
+font-size: 15px;
+outline: none;
+}
+.boton-login {
+width: 90%;
+margin: 25px auto 12px;
+padding: 14px;
+border: none;
+border-radius: 25px;
+background: #f6d875;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+}
+/* =========================
+CREAR CUENTA
+========================== */
+#crearCuenta {
+display: none;
+}
+.opciones-rol {
+display: flex;
+flex-direction: column;
+gap: 15px;
+margin-top: 25px;
+}
+.rol {
+padding: 20px;
+border: 2px solid #eadfe8;
+border-radius: 22px;
+background: white;
+cursor: pointer;
+transition: 0.2s;
+}
+.rol:hover {
+transform: scale(1.02);
+border-color: #efa8c5;
+}
+.rol-icono {
+font-size: 38px;
+margin-bottom: 8px;
+}
+.rol h3 {
+margin-bottom: 6px;
+color: #554c5e;
+}
+.rol p {
+font-size: 14px;
+color: #756b7d;
+}
+/* =========================
+REGISTRO
+========================== */
+#registro {
+display: none;
+}
+.registro-info {
+margin-bottom: 25px;
+}
+.registro-rol {
+font-size: 15px;
+color: #756b7d;
+margin-bottom: 25px;
+}
+/* =========================
+CONFIRMACIÓN
+========================== */
+#confirmacion {
+display: none;
+}
+.confirmacion-texto {
+color: #756b7d;
+margin-bottom: 30px;
+line-height: 1.6;
+}
+/* =========================
+INICIO
+========================== */
+#inicio {
+display: none;
+}
+/* =========================
+CREAR
+========================== */
+#crear {
+display: none;
+}
+#elaborarHistoria {
+display: none;
+}
+.inicio-encabezado {
+margin-bottom: 25px;
+}
+.inicio-encabezado .logo {
+font-size: 55px;
+margin-bottom: 5px;
+}
+.inicio-encabezado .universo {
+font-size: 28px;
+margin-bottom: 18px;
+}
+.saludo {
+font-size: 24px;
+margin-bottom: 8px;
+}
+.rol-inicio {
+color: #756b7d;
+font-size: 14px;
+}
+.inicio-opciones {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 14px;
+margin-top: 25px;
+}
+.inicio-boton {
+padding: 18px 10px;
+border: 2px solid #eadfe8;
+border-radius: 22px;
+background: white;
+color: #554c5e;
+font-size: 15px;
+font-weight: bold;
+cursor: pointer;
+transition: 0.2s;
+}
+.inicio-boton:hover {
+transform: scale(1.03);
+border-color: #efa8c5;
+}
+.inicio-icono {
+display: block;
+font-size: 30px;
+margin-bottom: 8px;
+}
+.inicio-boton.principal {
+background: #fff9e8;
+}
+.inicio-boton.momentos {
+background: #fff0f6;
+}
+.inicio-boton.crear {
+background: #f7f1ff;
+color: #554c5e;
+}
+.inicio-boton.perfil {
+background: #f2f7ff;
+}
+/* =========================
+VOLVER
+========================== */
+.volver {
+margin-top: 25px;
+border: none;
+background: transparent;
+color: #756b7d;
+cursor: pointer;
+}
+/* =========================
+ESTRELLAS
+========================== */
+.estrella {
+position: fixed;
+font-size: 22px;
+opacity: 0.45;
+}
+.estrella1 {
+top: 12%;
+left: 10%;
+}
+.estrella2 {
+top: 20%;
+right: 12%;
+}
+.estrella3 {
+bottom: 15%;
+left: 15%;
+}
+.estrella4 {
+bottom: 10%;
+right: 15%;
+}
+/* =========================
+ELABORAR HISTORIA
+========================== */
+#elaborarHistoria {
+display: none;
+text-align: left;
+}
+#elaborarHistoria h1,
+#elaborarHistoria > p {
+text-align: center;
+}
+.historia-campo {
+width: 90%;
+margin: 16px auto;
+}
+.historia-campo > label,
+.historia-seccion-titulo {
+display: block;
+margin-bottom: 8px;
+font-size: 14px;
+font-weight: bold;
+color: #554c5e;
+}
+#elaborarHistoria input[type="text"],
+#elaborarHistoria textarea,
+#elaborarHistoria select {
+width: 100%;
+padding: 13px 15px;
+border: 1px solid #e4dce5;
+border-radius: 20px;
+font-size: 15px;
+outline: none;
+background: white;
+color: #40384a;
+}
+#elaborarHistoria textarea {
+min-height: 110px;
+resize: vertical;
+}
+.portada-input {
+width: 100%;
+padding: 12px;
+border: 1px dashed #d9cbd8;
+border-radius: 18px;
+background: white;
+}
+.generos-historia {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 9px;
+}
+.generos-historia label {
+padding: 10px;
+border: 1px solid #eadfe8;
+border-radius: 16px;
+background: white;
+font-size: 13px;
+}
+.generos-historia input {
+margin-right: 5px;
+}
+.opcion-historia {
+display: flex;
+align-items: center;
+gap: 9px;
+padding: 13px 15px;
+border: 1px solid #eadfe8;
+border-radius: 18px;
+background: white;
+font-size: 14px;
+}
+.opcion-historia input {
+accent-color: #efa8c5;
+}
+.historia-acciones {
+margin-top: 25px;
+}
+#elaborarHistoria .boton-login {
+display: block;
+}
+
+/* =========================
+CREAR HISTORIA - SEGÚN BOCETO
+========================== */
+#elaborarHistoria {
+    display: none;
+    text-align: left;
+    overflow: visible;
+}
+
+#elaborarHistoria .historia-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+#elaborarHistoria .historia-encabezado h1 {
+    flex: 1;
+    text-align: left;
+    font-size: 30px;
+    margin: 0;
+}
+
+.historia-cuerpo {
+    width: 100%;
+}
+
+.historia-datos-superiores {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 12px;
+    align-items: stretch;
+    margin-bottom: 12px;
+}
+
+.historia-portada {
+    min-height: 205px;
+    border: 1px solid #d9cde9;
+    border-radius: 24px;
+    background: rgba(248,246,255,0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.historia-portada input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.historia-portada-contenido {
+    color: #8a82ad;
+    pointer-events: none;
+}
+
+.historia-portada-icono {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.historia-portada-texto {
+    font-size: 15px;
+}
+
+.historia-portada img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.historia-datos-rapidos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.historia-dato-boton,
+.historia-bloque-linea {
+    width: 100%;
+    min-height: 58px;
+    border: 1px solid #d9cde9;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.76);
+    color: #756b9d;
+    font-size: 15px;
+    padding: 12px 14px;
+    text-align: left;
+}
+
+.historia-dato-boton {
+    cursor: pointer;
+}
+
+.historia-dato-boton .dato-icono {
+    display: inline-block;
+    width: 25px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.historia-campo-boceto {
+    margin: 10px 0;
+}
+
+.historia-campo-boceto input,
+.historia-campo-boceto textarea,
+.historia-adaptacion input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d9cde9;
+    border-radius: 18px;
+    font-size: 15px;
+    outline: none;
+    background: rgba(255,255,255,0.82);
+    color: #40384a;
+}
+
+.historia-campo-boceto textarea {
+    min-height: 95px;
+    resize: vertical;
+}
+
+.historia-fila-opcion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #d9cde9;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.76);
+    color: #756b9d;
+}
+
+.historia-fila-opcion .fila-izquierda {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.interruptor {
+    position: relative;
+    width: 52px;
+    height: 30px;
+    flex: 0 0 auto;
+}
+
+.interruptor input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.interruptor .deslizador {
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    background: #ded8ef;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.interruptor .deslizador::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 3px;
+    top: 3px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 1px 4px rgba(80,60,90,.18);
+    transition: .2s;
+}
+
+.interruptor input:checked + .deslizador {
+    background: #a99be2;
+}
+
+.interruptor input:checked + .deslizador::before {
+    transform: translateX(22px);
+}
+
+.historia-adaptacion {
+    display: none;
+    margin: -2px 0 10px;
+    padding: 12px 14px;
+    border: 1px solid #d9cde9;
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    background: rgba(255,255,255,0.66);
+}
+
+.historia-adaptacion p {
+    font-size: 13px;
+    line-height: 1.45;
+    color: #756b7d;
+    margin-bottom: 9px;
+}
+
+.historia-edad {
+    margin: 10px 0 14px;
+    padding: 14px;
+    border: 1px solid #d9cde9;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.76);
+}
+
+.historia-edad-titulo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #756b9d;
+    font-size: 15px;
+    margin-bottom: 11px;
+}
+
+.historia-edad-opciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.historia-edad-opcion {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px;
+    border: 1px solid #d9cde9;
+    border-radius: 16px;
+    color: #756b9d;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.historia-edad-opcion input {
+    accent-color: #a99be2;
+}
+
+.editor-capitulo {
+    margin-top: 12px;
+    border: 1px solid #d9cde9;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.76);
+    overflow: hidden;
+}
+
+.editor-herramientas {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
+    padding: 9px;
+    border-bottom: 1px solid #e5def1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.editor-herramientas select,
+.editor-herramientas button {
+    flex: 0 0 auto;
+    border: 1px solid #d9cde9;
+    background: white;
+    color: #756b9d;
+    border-radius: 10px;
+    padding: 8px 7px;
+    cursor: pointer;
+    font-size: 12px;
+    min-height: 34px;
+}
+
+.editor-herramientas::-webkit-scrollbar {
+    height: 5px;
+}
+.editor-herramientas::-webkit-scrollbar-thumb {
+    background: #d9cde9;
+    border-radius: 10px;
+}
+.editor-herramientas #tipoLetraHistoria {
+    width: 112px;
+}
+
+.editor-herramientas #tamanoLetraHistoria {
+    width: 76px;
+}
+
+.editor-herramientas button {
+    min-width: 32px;
+    font-weight: bold;
+}
+
+.editor-herramientas .editor-color {
+    flex: 0 0 35px;
+    width: 35px;
+    height: 34px;
+    padding: 3px;
+    border: 1px solid #d9cde9;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+}
+
+.editor-color {
+    width: 36px;
+    height: 36px;
+    padding: 4px !important;
+}
+
+.editor-escritura {
+    position: relative;
+}
+
+.editor-escritura input[type="text"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #e5def1;
+    padding: 14px 16px 11px;
+    font-size: 18px;
+    color: #554c5e;
+    outline: none;
+    background: transparent;
+}
+
+.editor-escritura textarea {
+    width: 100%;
+    min-height: 230px;
+    border: none;
+    padding: 12px 16px 45px;
+    resize: vertical;
+    outline: none;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #40384a;
+    background: transparent;
+}
+
+.editor-imagen {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    width: 36px;
+    height: 36px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.editor-imagen-label {
+    position: absolute;
+    right: 10px;
+    bottom: 9px;
+    font-size: 24px;
+    color: #8d83b5;
+    pointer-events: none;
+}
+
+.historia-acciones-finales {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.boton-publicar-historia,
+.boton-borrador-historia {
+    width: 100%;
+    border: 1px solid #a99be2;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.boton-publicar-historia {
+    background: linear-gradient(90deg,#b9a8ec,#e1a8d1);
+    color: white;
+}
+
+.boton-borrador-historia {
+    background: linear-gradient(90deg,#d4c8f2,#efc1e0);
+    color: white;
+}
+
+.historia-panel-generos {
+    display: none;
+    margin-top: -3px;
+    padding: 12px;
+    border: 1px solid #d9cde9;
+    border-radius: 16px;
+    background: white;
+}
+
+.historia-panel-generos.activo {
+    display: block;
+}
+
+.historia-panel-generos label {
+    display: inline-block;
+    width: calc(50% - 5px);
+    margin-bottom: 7px;
+    padding: 8px;
+    border: 1px solid #eadfe8;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #756b9d;
+}
+
+@media (max-width: 480px) {
+    .historia-datos-superiores {
+        grid-template-columns: 1fr;
+    }
+    .historia-portada {
+        min-height: 170px;
+    }
+}
+
+
+/* =========================
+INICIO SEGÚN EL BOCETO
+========================== */
+#inicio.pantalla {
+  width: min(96%, 430px);
+  max-width: 430px;
+  min-height: 90vh;
+  padding: 18px 14px 100px;
+  text-align: left;
+  border: 1px solid rgba(169,155,210,.45);
+  background:
+    radial-gradient(circle at 20% 5%, rgba(255,255,255,.95), transparent 28%),
+    linear-gradient(145deg, #fff8ed, #fff0f7 48%, #f1edff);
+  position: relative;
+}
+.inicio-cabecera-nueva {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 2px 22px;
+}
+.inicio-marca {
+  flex: 1;
+  text-align: center;
+  white-space: nowrap;
+  font-family: Georgia, serif;
+  font-size: clamp(25px, 7vw, 34px);
+  color: #67518c;
+  letter-spacing: -.8px;
+}
+.inicio-marca .marca-v { color: #e7bd62; }
+.inicio-marca .marca-s { color: #d78bb8; }
+.inicio-estrella { color: #c5ad72; font-size: 17px; }
+.inicio-configuracion {
+  border: 0;
+  background: transparent;
+  color: #66558b;
+  font-size: 27px;
+  cursor: pointer;
+  padding: 3px;
+}
+.inicio-compositor {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #d9cde9;
+  border-radius: 28px;
+  background: rgba(255,255,255,.66);
+  color: #81758f;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+.nube-icono {
+  width: 42px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #8f7db8;
+  background: #fff5fc;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.inicio-momentos {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 3px 1px 18px;
+  margin-bottom: 3px;
+  scrollbar-width: thin;
+}
+.momento-tarjeta {
+  min-width: 66px;
+  max-width: 72px;
+  text-align: center;
+  color: #675b7c;
+  font-size: 12px;
+  cursor: pointer;
+}
+.momento-nuevo {
+  min-width: 72px;
+  padding: 8px 4px 9px;
+  border: 1px solid #d9cde9;
+  border-radius: 19px;
+  background: rgba(255,255,255,.65);
+}
+.momento-circulo {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px double #b6a6d9;
+  background: linear-gradient(145deg, #b9a8ec, #f4b8d6 55%, #fce7ba);
+  color: #fff8ff;
+  font-size: 27px;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.7);
+}
+.momento-nuevo .momento-circulo {
+  width: 45px;
+  height: 42px;
+  border: 0;
+  border-radius: 15px;
+  background: transparent;
+  color: #9b86c2;
+  box-shadow: none;
+  font-size: 28px;
+}
+.momento-nombre { display:block; line-height:1.25; overflow-wrap:anywhere; }
+.momento-hora { display:block; color:#968ba6; margin-top:2px; }
+.inicio-publicacion {
+  border: 1px solid #d9cde9;
+  border-radius: 22px;
+  padding: 12px;
+  margin: 8px 0 14px;
+  background: rgba(255,255,255,.67);
+  box-shadow: 0 3px 12px rgba(98,76,126,.04);
+}
+.publicacion-autor {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:9px;
+}
+.publicacion-avatar {
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#efc2df,#c3b4ef);
+  border:2px solid #e0d4f0;
+  font-size:24px;
+  flex-shrink:0;
+}
+.publicacion-nombre { font-size:14px; color:#5c4b79; font-weight:bold; }
+.publicacion-tiempo { font-size:12px; color:#978ba7; margin-top:2px; }
+.publicacion-menu { margin-left:auto; border:0; background:transparent; color:#6c5b8b; font-size:22px; cursor:pointer; padding:5px 7px; border-radius:12px; line-height:1; }
+.publicacion-menu:hover, .publicacion-menu:focus-visible { background:#f3eafa; outline:none; }
+.publicacion-menu-wrap { margin-left:auto; position:relative; }
+.publicacion-menu-wrap .publicacion-menu { margin-left:0; }
+.publicacion-menu-panel { position:absolute; z-index:30; right:0; top:34px; width:190px; padding:6px; border:1px solid #dfd1ec; border-radius:14px; background:#fffdfd; box-shadow:0 8px 24px #6f55852b; }
+.publicacion-menu-panel[hidden] { display:none; }
+.publicacion-menu-panel button { display:block; width:100%; text-align:left; padding:10px 11px; border:0; border-radius:9px; background:transparent; color:#65527f; font-size:13px; cursor:pointer; }
+.publicacion-menu-panel button:hover { background:#f8edf7; }
+.publicacion-menu-panel button.reportar { color:#a64f79; }
+.publicacion-acciones button { border:0; background:transparent; color:inherit; font-size:19px; cursor:pointer; padding:3px 1px; }
+.publicacion-acciones button[aria-label="Me gusta"] { font-size:20px; }
+.publicacion-acciones button[aria-label="Comentar"] { font-size:19px; }
+.publicacion-acciones button[aria-label="Compartir"] { font-size:19px; }
+.publicacion-acciones button[aria-label="Guardar"] { font-size:19px; }
+.publicacion-texto { font-size:14px; line-height:1.55; color:#706581; margin:7px 1px 10px; overflow-wrap:anywhere; }
+.publicacion-imagen {
+  min-height:100px;
+  height:115px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 70% 25%, rgba(255,231,174,.9) 0 2%, transparent 3%),
+    radial-gradient(ellipse at 75% 24%, #fff0bd 0 5%, transparent 6%),
+    linear-gradient(165deg, #8d8cce 0%, #c8a5e0 36%, #f3b8d2 62%, #ffdfc5 100%);
+  color:rgba(255,255,255,.9);
+  font-size:27px;
+}
+.publicacion-acciones {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:9px 2px 0;
+  color:#8d7eaa;
+  font-size:13px;
+}
+.publicacion-acciones button { border:0; background:transparent; color:inherit; font-size:19px; cursor:pointer; }
+.publicacion-acciones .guardar { margin-left:auto; }
+.inicio-barra-inferior {
+  position: fixed;
+  z-index: 20;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8px;
+  width: min(96%, 430px);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  padding: 8px 5px 7px;
+  border: 1px solid rgba(207,190,224,.9);
+  border-radius: 27px;
+  background: rgba(255,250,247,.96);
+  box-shadow: 0 -4px 18px rgba(95,73,116,.10);
+  backdrop-filter: blur(10px);
+}
+.inicio-nav-item {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  border:0;
+  background:transparent;
+  color:#817493;
+  font-size:10px;
+  cursor:pointer;
+  padding:3px 1px;
+}
+.inicio-nav-icono { font-size:23px; line-height:1.1; }
+.inicio-nav-item.activo { color:#8f4ca0; }
+.inicio-nav-item.crear-nav .inicio-nav-icono {
+  width:34px; height:30px; display:flex; align-items:center; justify-content:center;
+  border-radius:50%; background:#f8e4f4; font-size:25px;
+}
+@media (max-width: 360px) {
+  #inicio.pantalla { padding-left:10px; padding-right:10px; }
+  .momento-circulo { width:55px; height:55px; }
+  .momento-tarjeta { min-width:60px; }
+  .inicio-nav-item { font-size:9px; }
+}
+
+
+/* =========================
+   SECCIONES INTEGRADAS
+========================= */
+.seccion-app.pantalla {
+  display:none;
+  width:min(96%,430px);
+  max-width:430px;
+  min-height:90vh;
+  padding:18px 14px 100px;
+  text-align:left;
+  border:1px solid rgba(169,155,210,.45);
+  background:radial-gradient(circle at 20% 5%,rgba(255,255,255,.95),transparent 28%),
+    linear-gradient(145deg,#fff8ed,#fff0f7 48%,#f1edff);
+  position:relative;
+}
+.app-encabezado {display:flex;align-items:center;gap:8px;margin:4px 2px 18px;}
+.app-encabezado h1 {flex:1;text-align:center;font:24px Georgia,serif;color:#67518c;}
+.app-volver {border:0;background:transparent;color:#756b9d;font-size:22px;cursor:pointer;padding:5px;}
+.app-tarjeta {border:1px solid #d9cde9;border-radius:19px;background:rgba(255,255,255,.72);padding:13px;margin:10px 0;color:#675b7c;}
+.app-tarjeta h3 {font-size:16px;color:#67518c;margin-bottom:6px;}
+.app-tarjeta p {font-size:13px;line-height:1.5;color:#81758f;}
+.app-input {width:100%;padding:12px 14px;border:1px solid #d9cde9;border-radius:20px;background:#fffdfd;color:#40384a;font-size:14px;outline:none;}
+.app-chips {display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 16px;}
+.app-chip {border:1px solid #d9cde9;border-radius:20px;background:rgba(255,255,255,.75);color:#756b9d;padding:8px 11px;font-size:12px;cursor:pointer;}
+.app-chip.activo {background:#f3dfef;border-color:#d78bb8;color:#754b83;}
+.app-accion {border:1px solid #d9cde9;border-radius:18px;background:#f7efff;color:#75619a;padding:9px 12px;cursor:pointer;font-weight:bold;}
+.app-nav {position:fixed;z-index:30;left:50%;transform:translateX(-50%);bottom:8px;width:min(96%,430px);display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:8px 5px 7px;border:1px solid rgba(207,190,224,.9);border-radius:27px;background:rgba(255,250,247,.97);box-shadow:0 -4px 18px rgba(95,73,116,.10);backdrop-filter:blur(10px);}
+.app-nav button {display:flex;flex-direction:column;align-items:center;gap:3px;border:0;background:transparent;color:#817493;font-size:10px;cursor:pointer;padding:3px 1px;}
+.app-nav button span:first-child {font-size:23px;line-height:1.1;}
+.app-nav button.activo {color:#8f4ca0;}
+.explorar-libro {display:flex;gap:12px;align-items:center;}
+.libro-portada {width:66px;height:88px;flex:0 0 66px;border-radius:13px;background:linear-gradient(145deg,#b9a8ec,#f4b8d6 55%,#fce7ba);display:flex;align-items:center;justify-content:center;color:white;font-size:24px;}
+.notificacion {display:flex;align-items:flex-start;gap:10px;}
+.notificacion.leida {opacity:.62;}
+.notif-icono {font-size:23px;}
+.notif-contenido {flex:1;}
+.notif-contenido strong {color:#67518c;}
+.notif-acciones {display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;}
+.perfil-identidad {text-align:center;padding:12px 8px 18px;}
+.perfil-avatar {width:82px;height:82px;border-radius:50%;margin:0 auto 9px;display:flex;align-items:center;justify-content:center;font-size:38px;background:linear-gradient(145deg,#efc2df,#c3b4ef);border:3px solid #e0d4f0;}
+.perfil-nombre {font-size:21px;font-weight:bold;color:#67518c;}
+.perfil-rol {font-size:13px;color:#a27ba8;margin:5px 0;}
+.perfil-bio {font-size:13px;color:#81758f;margin:8px 0 13px;}
+.perfil-estadisticas {display:flex;justify-content:center;gap:28px;font-size:12px;color:#81758f;}
+.perfil-estadisticas strong {display:block;color:#67518c;font-size:16px;}
+.perfil-tabs {display:flex;gap:5px;margin:12px 0;}
+.perfil-tabs button {flex:1;border:1px solid #d9cde9;border-radius:15px;background:#fff9ff;padding:9px 3px;color:#756b9d;font-size:12px;cursor:pointer;}
+.perfil-tabs button.activo {background:#f3dfef;border-color:#d78bb8;}
+.perfil-panel {display:none;}
+.perfil-panel.activo {display:block;}
+@media(max-width:360px){.app-nav button{font-size:9px}.app-encabezado h1{font-size:21px}}
+
+
+/* Pantallas originales integradas: conservan sus estilos y funciones independientes. */
+.pantalla-original { padding:0 !important; margin:0 !important; width:100%; min-height:100vh; overflow:hidden; background:transparent; }
+.pantalla-original iframe { display:block; width:100%; height:100vh; min-height:680px; border:0; margin:0; padding:0; background:transparent; }
+
+
+/* =========================
+   CREAR PUBLICACIÓN
+========================= */
+#crearPublicacion { display:none; text-align:left; }
+#crearPublicacion .publicacion-formulario { width:100%; }
+#crearPublicacion .pub-label { display:block; margin:14px 0 7px; color:#67518c; font-size:14px; font-weight:bold; }
+#crearPublicacion .pub-textarea, #crearPublicacion .pub-select, #crearPublicacion .pub-input { width:100%; border:1px solid #d9cde9; border-radius:17px; padding:12px 14px; font:14px Arial,sans-serif; color:#40384a; background:rgba(255,255,255,.9); outline:none; }
+#crearPublicacion .pub-textarea { min-height:145px; resize:vertical; line-height:1.55; }
+#crearPublicacion .pub-tipos { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:15px 0; }
+#crearPublicacion .pub-tipo { border:1px solid #d9cde9; border-radius:17px; padding:12px 7px; background:rgba(255,255,255,.75); color:#756b9d; cursor:pointer; font-size:13px; }
+#crearPublicacion .pub-tipo.activo { background:#f3dfef; border-color:#d78bb8; color:#754b83; }
+#crearPublicacion .pub-panel { display:none; padding:12px; border:1px solid #e3d8ee; border-radius:17px; background:rgba(255,255,255,.6); margin:10px 0; }
+#crearPublicacion .pub-panel.activo { display:block; }
+#crearPublicacion .pub-preview { display:none; max-width:100%; max-height:260px; object-fit:contain; border-radius:14px; margin-top:10px; }
+#crearPublicacion .pub-audiencia { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+#crearPublicacion .pub-audiencia label { border:1px solid #d9cde9; border-radius:14px; padding:11px; background:white; font-size:13px; }
+#crearPublicacion .pub-ayuda { font-size:12px; color:#8b8098; line-height:1.45; margin-top:7px; }
+#crearPublicacion .pub-acciones { display:flex; flex-direction:column; gap:9px; margin-top:20px; }
+#crearPublicacion .pub-btn { border:1px solid #d9cde9; border-radius:22px; padding:13px; background:#f7efff; color:#75619a; font-weight:bold; cursor:pointer; }
+#crearPublicacion .pub-btn.principal { border:0; background:linear-gradient(90deg,#b9a8ec,#e1a8d1); color:white; }
+#crearPublicacion .pub-fragmento { display:none; }
+
+</style>
+</head>
+<body>
+<!-- =========================
+ESTRELLAS
+========================== -->
+<div class="estrella estrella1"> ✦ </div>
+<div class="estrella estrella2"> ✧ </div>
+<div class="estrella estrella3"> ✦ </div>
+<div class="estrella estrella4"> ✧ </div>
+<!-- =========================
+BIENVENIDA
+========================== -->
+<main id="bienvenida" class="pantalla">
+<h1 class="titulo">
+BIENVENIDO/A
+</h1>
+<div class="logo">
+<span class="v">V</span><span class="s">S</span>
+</div>
+<div class="universo">
+uniVerSo
+</div>
+<p class="frase">
+Porque cada historia es un mundo
+</p>
+<button
+class="boton iniciar"
+onclick="mostrarLogin()">
+Iniciar sesión
+</button>
+<button
+class="boton crear"
+onclick="mostrarCrearCuenta()">
+Crear cuenta
+</button>
+<p class="lema">
+Leer · crear · compartir...
+</p>
+</main>
+<!-- =========================
+INICIAR SESIÓN
+========================== -->
+<main id="login" class="pantalla">
+<div class="logo">
+<span class="v">V</span><span class="s">S</span>
+</div>
+<div class="universo">
+uniVerSo
+</div>
+<h1 class="titulo-pantalla">
+Iniciar sesión
+</h1>
+<p class="subtitulo">
+Volvé a tu universo de historias
+</p>
+<div class="campo">
+<label>
+Correo electrónico
+</label>
+<input
+type="email"
+placeholder="Tu correo electrónico">
+</div>
+<div class="campo">
+<label>
+Contraseña
+</label>
+<input
+type="password"
+placeholder="Tu contraseña">
+</div>
+<button class="boton-login">
+Iniciar sesión
+</button>
+<button
+class="volver"
+onclick="volverBienvenida()">
+← Volver
+</button>
+</main>
+<!-- =========================
+CREAR CUENTA
+========================== -->
+<main id="crearCuenta" class="pantalla">
+<div class="logo">
+<span class="v">V</span><span class="s">S</span>
+</div>
+<div class="universo">
+uniVerSo
+</div>
+<h1 class="titulo-pantalla">
+Crear cuenta
+</h1>
+<p class="subtitulo">
+¿Cómo querés participar?
+</p>
+<div class="opciones-rol">
+<!-- LECTOR -->
+<div
+class="rol"
+onclick="seleccionarRol('Lector')">
+<div class="rol-icono">
+📖
+</div>
+<h3>
+Lector
+</h3>
+<p>
+Leer, descubrir y compartir historias.
+</p>
+</div>
+<!-- ESCRITOR -->
+<div
+class="rol"
+onclick="seleccionarRol('Escritor')">
+<div class="rol-icono">
+✍ ️
+</div>
+<h3>
+Escritor
+</h3>
+<p>
+Crear, publicar y compartir tus historias.
+</p>
+</div>
+</div>
+<button
+class="volver"
+onclick="volverBienvenida()">
+← Volver
+</button>
+</main>
+<!-- =========================
+REGISTRO
+========================== -->
+<main id="registro" class="pantalla">
+<div class="logo">
+<span class="v">V</span><span class="s">S</span>
+</div>
+<div class="universo">
+uniVerSo
+</div>
+<h1 class="titulo-pantalla">
+Crear tu cuenta
+</h1>
+<p class="subtitulo">
+Completá tus datos para comenzar
+</p>
+<div class="registro-info">
+<p id="rolElegido" class="registro-rol">
+Cuenta de usuario
+</p>
+</div>
+<div class="campo">
+<label>
+Nombre de usuario
+</label>
+<input
+type="text"
+id="nombreUsuario"
+placeholder="Elegí tu nombre de usuario">
+</div>
+<div class="campo">
+<label>
+Correo electrónico
+</label>
+<input
+type="email"
+id="correo"
+placeholder="Tu correo electrónico">
+</div>
+<div class="campo">
+<label>
+Contraseña
+</label>
+<input
+type="password"
+id="contrasena"
+placeholder="Creá una contraseña">
+</div>
+<div class="campo">
+<label>
+Confirmar contraseña
+</label>
+<input
+type="password"
+id="confirmarContrasena"
+placeholder="Repetí tu contraseña">
+</div>
+<button id="botonCrearCuentaRegistro" class="boton-login" type="button">
+Crear cuenta
+</button>
+<button
+class="volver"
+onclick="mostrarCrearCuenta()">
+← Volver
+</button>
+</main>
+<!-- =========================
+CONFIRMACIÓN
+========================== -->
+<main id="confirmacion" class="pantalla">
+<div class="logo">
+<span class="v">V</span><span class="s">S</span>
+</div>
+<div class="universo">
+uniVerSo
+</div>
+<h1 class="titulo-pantalla">
+¡Cuenta creada!
+</h1>
+<p class="confirmacion-texto">
+Gracias por quedarte
+<br><br>
+Tu universo de historias comienza acá.
+</p>
+<button
+class="boton-login"
+onclick="irAlInicio()">
+Continuar
+</button>
+</main>
+<!-- =========================
+INICIO
+========================== -->
+<main id="inicio" class="pantalla">
+  <header class="inicio-cabecera-nueva">
+    <span class="inicio-estrella">✧</span>
+    <div class="inicio-marca"><span class="marca-v">V</span><span class="marca-s">S</span> uniVerSo</div>
+    <span class="inicio-estrella">✧</span>
+    <button class="inicio-configuracion" type="button" title="Configuración" onclick="alert('Configuración: la conectaremos más adelante.')">⚙</button>
+  </header>
+
+  <button class="inicio-compositor" type="button" onclick="mostrarCrearPublicacion()">
+    <span class="nube-icono">✧</span>
+    <span>¿Qué estás pensando?</span>
+  </button>
+
+  <section class="inicio-momentos" aria-label="Momentos">
+    <button id="botonMiMomentoVS" class="momento-tarjeta momento-nuevo" type="button" onclick="abrirMiMomentoVS()" aria-label="Mi momento">
+      <span id="iconoMiMomentoVS" class="momento-circulo">☁</span>
+      <span id="nombreMiMomentoVS" class="momento-nombre">Mi<br>momento</span>
+    </button>
+    <button class="momento-tarjeta" type="button" onclick="verMomentoAutorVS('Lunari')">
+      <span class="momento-circulo">☁</span><span class="momento-nombre">Lunari</span><span class="momento-hora">2h</span>
+    </button>
+    <button class="momento-tarjeta" type="button" onclick="verMomentoAutorVS('Neko')">
+      <span class="momento-circulo">☁</span><span class="momento-nombre">Neko</span><span class="momento-hora">4h</span>
+    </button>
+    <button class="momento-tarjeta" type="button" onclick="verMomentoAutorVS('Dani P.')">
+      <span class="momento-circulo">☁</span><span class="momento-nombre">Dani P.</span><span class="momento-hora">6h</span>
+    </button>
+    <button class="momento-tarjeta" type="button" onclick="verMomentoAutorVS('Kixhi')">
+      <span class="momento-circulo">☁</span><span class="momento-nombre">Kixhi</span><span class="momento-hora">8h</span>
+    </button>
+  </section>
+
+  <article class="inicio-publicacion">
+    <div class="publicacion-autor">
+      <span class="publicacion-avatar">👩🏻‍🎨</span>
+      <div><div class="publicacion-nombre">Lunari</div><div class="publicacion-tiempo">Hace 2h</div></div>
+      <div class="publicacion-menu-wrap"><button class="publicacion-menu" type="button" title="Más opciones" aria-label="Más opciones de la publicación" aria-expanded="false" onclick="mostrarOpcionesPublicacion(this, false)">⋯</button></div>
+    </div>
+    <p class="publicacion-texto">A veces, las mejores historias no están en los libros, sino en las personas que se quedan. ✧</p>
+    <div class="publicacion-imagen" role="img" aria-label="Paisaje de fantasía con cielo pastel">☾ ✦</div>
+    <div class="publicacion-acciones">
+      <button type="button" aria-label="Me gusta" onclick="alternarMeGusta(this)">🤍</button><span>245</span>
+      <button type="button" aria-label="Comentar" onclick="alert('Los comentarios los conectaremos más adelante.')">💬</button><span>32</span>
+      <button type="button" aria-label="Compartir" onclick="alert('La opción para compartir la conectaremos más adelante.')">↗️</button>
+      <button class="guardar" type="button" aria-label="Guardar" onclick="alternarGuardado(this)">🔖</button>
+    </div>
+  </article>
+
+  <article class="inicio-publicacion">
+    <div class="publicacion-autor">
+      <span class="publicacion-avatar">🐈</span>
+      <div><div class="publicacion-nombre">Neko</div><div class="publicacion-tiempo">Hace 4h</div></div>
+      <div class="publicacion-menu-wrap"><button class="publicacion-menu" type="button" title="Más opciones" aria-label="Más opciones de la publicación" aria-expanded="false" onclick="mostrarOpcionesPublicacion(this, false)">⋯</button></div>
+    </div>
+    <p class="publicacion-texto">Hoy les comparto el avance de mi historia ✧<br>¿Les gustaría que suba un fragmento?</p>
+    <div class="publicacion-imagen" role="img" aria-label="Nubes rosas y violetas bajo la luna">☁ ☾ ✧</div>
+    <div class="publicacion-acciones">
+      <button type="button" aria-label="Me gusta" onclick="alternarMeGusta(this)">🤍</button><span>128</span>
+      <button type="button" aria-label="Comentar" onclick="alert('Los comentarios los conectaremos más adelante.')">💬</button><span>18</span>
+      <button type="button" aria-label="Compartir" onclick="alert('La opción para compartir la conectaremos más adelante.')">↗️</button>
+      <button class="guardar" type="button" aria-label="Guardar" onclick="alternarGuardado(this)">🔖</button>
+    </div>
+  </article>
+
+  <nav class="inicio-barra-inferior" aria-label="Navegación principal">
+    <button class="inicio-nav-item activo" type="button" onclick="irAlInicio()"><span class="inicio-nav-icono">⌂</span><span>Inicio</span></button>
+    <button class="inicio-nav-item" type="button" onclick="abrirSeccionInicio('Explorar')"><span class="inicio-nav-icono">⌕</span><span>Explorar</span></button>
+    <button class="inicio-nav-item crear-nav" type="button" onclick="mostrarCrear()"><span class="inicio-nav-icono">＋</span><span>Crear</span></button>
+    <button class="inicio-nav-item" type="button" onclick="abrirSeccionInicio('Notificaciones')"><span class="inicio-nav-icono">♧</span><span>Notificaciones</span></button>
+    <button class="inicio-nav-item" type="button" onclick="abrirSeccionInicio('Perfil')"><span class="inicio-nav-icono">♙</span><span>Perfil</span></button>
+  </nav>
+</main>
+<!-- =========================
+CREAR
+========================== -->
+<main id="crear" class="pantalla">
+<div class="logo">
+<span class="v">V</span><span class="s">S</span>
+</div>
+<div class="universo">
+uniVerSo
+</div>
+<h1 class="titulo-pantalla">
+Crear
+</h1>
+<p class="subtitulo">
+¿Qué querés crear?
+</p>
+<div class="opciones-rol">
+<!-- ELABORAR HISTORIA -->
+<div
+class="rol"
+id="opcionHistoria"
+onclick="mostrarElaborarHistoria()">
+<div class="rol-icono">
+✍ ️
+</div>
+<h3>
+Elaborar historia
+</h3>
+<p>
+Creá tu propia historia, agregá capítulos y compartila con otros lectores.
+</p>
+</div>
+<!-- CREAR PUBLICACIÓN -->
+<div
+class="rol"
+onclick="mostrarCrearPublicacion()">
+<div class="rol-icono">
+📝
+</div>
+<h3>
+Crear publicación
+</h3>
+<p>
+Compartí textos, imágenes, videos o fragmentos de tus historias.
+</p>
+</div>
+<!-- CREAR MOMENTO -->
+<div
+class="rol"
+onclick="mostrarCrearMomento()">
+<div class="rol-icono">
+✦
+</div>
+<h3>
+Crear Momento
+</h3>
+<p>
+Compartí algo especial que estará disponible durante 24 horas.
+</p>
+</div>
+</div>
+<button
+class="volver"
+onclick="irAlInicio()">
+← Volver al inicio
+</button>
+</main>
+<main id="elaborarHistoria" class="pantalla">
+<div class="historia-encabezado">
+<button class="volver" onclick="mostrarCrear()">←</button>
+<h1>Crear historia</h1>
+<button class="volver" onclick="alert('Configuración de la historia. Esta opción la completaremos más adelante.')">⚙</button>
+</div>
+
+<div class="historia-cuerpo">
+<div class="historia-datos-superiores">
+<label class="historia-portada" for="portadaHistoria">
+<input id="portadaHistoria" type="file" accept="image/*" onchange="previsualizarPortada(event)">
+<span class="historia-portada-contenido" id="portadaContenido">
+<span class="historia-portada-icono">＋</span><br>
+<span class="historia-portada-texto">Agregar imagen</span>
+</span>
+<img id="vistaPortadaHistoria" alt="Portada" style="display:none;">
+</label>
+
+<div class="historia-datos-rapidos">
+<div class="historia-campo-boceto">
+<input id="tituloHistoria" type="text" placeholder="Título">
+</div>
+<div class="historia-campo-boceto">
+<textarea id="sinopsisHistoria" placeholder="Sinopsis"></textarea>
+</div>
+<div class="historia-campo-boceto">
+<button class="historia-dato-boton" type="button" onclick="alternarPanelGeneros()">
+<span class="dato-icono">◇</span> Género / Categoría
+</button>
+<div id="panelGeneros" class="historia-panel-generos">
+<label><input type="checkbox" name="genero" value="Ficción"> Ficción</label>
+<label><input type="checkbox" name="genero" value="Acción"> Acción</label>
+<label><input type="checkbox" name="genero" value="Fantasía"> Fantasía</label>
+<label><input type="checkbox" name="genero" value="Fanfic"> Fanfic</label>
+<label><input type="checkbox" name="genero" value="Thriller / Asesinato"> Thriller</label>
+<label><input type="checkbox" name="genero" value="Suspenso"> Suspenso</label>
+<label><input type="checkbox" name="genero" value="Comedia"> Comedia</label>
+<label><input type="checkbox" name="genero" value="Dark"> Dark</label>
+<label><input type="checkbox" name="genero" value="Dark romance"> Dark romance</label>
+<label><input type="checkbox" name="genero" value="Romance"> Romance</label>
+<label><input type="checkbox" id="generoOtro" name="genero" value="Otro"> Otro</label>
+<input id="generoPersonalizado" type="text" placeholder="Escribí tu género" style="display:none; width:100%; margin-top:7px; padding:10px; border:1px solid #eadfe8; border-radius:12px;">
+</div>
+</div>
+</div>
+</div>
+
+<div class="historia-fila-opcion">
+<div class="fila-izquierda"><span>♙</span> Derecho de autor (obra propia)</div>
+<label class="interruptor">
+<input id="obraPropiaHistoria" type="checkbox" checked>
+<span class="deslizador"></span>
+</label>
+</div>
+
+<div class="historia-fila-opcion" style="margin-bottom:0;">
+<div class="fila-izquierda"><span>☆</span> Es adaptación de otra historia</div>
+<button type="button" class="volver" style="margin:0; font-size:24px;" onclick="alternarAdaptacion()">＋</button>
+</div>
+<div id="adaptacionHistoria" class="historia-adaptacion">
+<p>En caso de ser adaptación de otra historia, comentar título y autor de la obra.</p>
+<input id="tituloAdaptacion" type="text" placeholder="Título de la obra original">
+<input id="autorAdaptacion" type="text" placeholder="Autor de la obra original" style="margin-top:8px;">
+</div>
+
+<div class="historia-edad">
+<div class="historia-edad-titulo"><span>◉</span> ¿Quién puede verlo?</div>
+<div class="historia-edad-opciones">
+<label class="historia-edad-opcion"><input type="radio" name="visibilidadHistoria" value="ATP" checked> ATP (Apto para todo público)</label>
+<label class="historia-edad-opcion"><input type="radio" name="visibilidadHistoria" value="18+"> 18 más</label>
+</div>
+</div>
+
+<div class="editor-capitulo">
+<div class="editor-herramientas">
+<select id="tipoLetraHistoria" onchange="aplicarFormatoEditor()">
+<option>Tipo de letra</option>
+<option>Arial</option><option>Georgia</option><option>Times New Roman</option>
+</select>
+<select id="tamanoLetraHistoria" onchange="aplicarFormatoEditor()">
+<option value="">Tamaño</option><option value="14px">14</option><option value="16px">16</option><option value="18px">18</option><option value="20px">20</option>
+</select>
+<button type="button" onclick="alternarFormato('bold')"><b>B</b></button>
+<button type="button" onclick="alternarFormato('underline')"><u>U</u></button>
+<button type="button" onclick="alternarFormato('italic')"><i>I</i></button>
+<input id="colorLetraHistoria" class="editor-color" type="color" value="#756b9d" onchange="aplicarFormatoEditor()" title="Color">
+<button type="button" onclick="alert('Más herramientas de escritura las agregaremos siguiendo el boceto.')">＋</button>
+</div>
+<div class="editor-escritura">
+<input id="tituloCapitulo" type="text" placeholder="Agregar título de capítulo">
+<textarea id="contenidoCapitulo" placeholder="Escribí aquí el contenido del capítulo..."></textarea>
+<label for="imagenCapitulo" class="editor-imagen-label">▧</label>
+<input id="imagenCapitulo" class="editor-imagen" type="file" accept="image/*" title="Agregar imagen al capítulo">
+</div>
+</div>
+
+<div class="historia-acciones-finales">
+<button class="boton-publicar-historia" type="button" onclick="publicarHistoria()">➤ &nbsp; Publicar</button>
+<button class="boton-borrador-historia" type="button" onclick="guardarComoBorrador()">▣ &nbsp; Guardar como borrador</button>
+</div>
+</div>
+</main>
+
+<!-- CREAR PUBLICACIÓN -->
+<main id="crearPublicacion" class="pantalla seccion-app">
+  <div class="app-encabezado">
+    <button class="app-volver" type="button" onclick="mostrarCrear()" aria-label="Volver">←</button>
+    <h1>Crear publicación</h1>
+    <span style="width:28px"></span>
+  </div>
+  <form class="publicacion-formulario" id="formCrearPublicacion" onsubmit="publicarPublicacion(event)">
+    <div class="app-tarjeta" style="margin-top:0">
+      <strong style="color:#67518c">✧ Compartí algo con tu universo</strong>
+      <p style="margin-top:5px">Escribí algo propio o elegí qué contenido querés compartir.</p>
+    </div>
+    <div class="pub-tipos" role="group" aria-label="Tipo de publicación">
+      <button class="pub-tipo activo" type="button" data-tipo="texto" onclick="seleccionarTipoPublicacion('texto',this)">✎ Texto</button>
+      <button class="pub-tipo" type="button" data-tipo="imagen" onclick="seleccionarTipoPublicacion('imagen',this)">▧ Foto</button>
+      <button class="pub-tipo" type="button" data-tipo="video" onclick="seleccionarTipoPublicacion('video',this)">▷ Video</button>
+      <button class="pub-tipo" type="button" data-tipo="fragmento" onclick="seleccionarTipoPublicacion('fragmento',this)">📖 Fragmento</button>
+    </div>
+    <input type="hidden" id="tipoPublicacion" value="texto">
+    <label class="pub-label" for="textoPublicacion">¿Qué querés compartir?</label>
+    <textarea class="pub-textarea" id="textoPublicacion" maxlength="2000" placeholder="Escribí tus pensamientos, una frase o algo que quieras compartir..."></textarea>
+    <section class="pub-panel" id="panelImagenPublicacion">
+      <label class="pub-label" for="archivoImagenPublicacion">Elegí una imagen</label>
+      <input class="pub-input" id="archivoImagenPublicacion" type="file" accept="image/*" onchange="previsualizarArchivoPublicacion(event,'imagen')">
+      <img id="previewImagenPublicacion" class="pub-preview" alt="Vista previa de la imagen">
+      <p class="pub-ayuda">La imagen se guarda en este navegador dentro del prototipo. Usá archivos livianos.</p>
+    </section>
+    <section class="pub-panel" id="panelVideoPublicacion">
+      <label class="pub-label" for="archivoVideoPublicacion">Elegí un video</label>
+      <input class="pub-input" id="archivoVideoPublicacion" type="file" accept="video/*" onchange="previsualizarArchivoPublicacion(event,'video')">
+      <video id="previewVideoPublicacion" class="pub-preview" controls></video>
+      <p class="pub-ayuda">Para evitar superar el espacio disponible, elegí un video corto y liviano.</p>
+    </section>
+    <section class="pub-panel" id="panelFragmentoPublicacion">
+      <label class="pub-label" for="libroFragmento">Historia</label>
+      <select class="pub-select" id="libroFragmento"><option value="">Elegí una historia</option><option>El principio de un final</option><option>El jardín de las lunas</option><option>Cartas que nunca envié</option><option>Otra historia</option></select>
+      <label class="pub-label" for="capituloFragmento">Capítulo</label>
+      <input class="pub-input" id="capituloFragmento" type="text" placeholder="Ej.: Capítulo 1 — El comienzo">
+      <label class="pub-label" for="textoFragmento">Fragmento que querés compartir</label>
+      <textarea class="pub-textarea" id="textoFragmento" maxlength="1200" placeholder="Pegá acá el fragmento de tu historia..."></textarea>
+      <p class="pub-ayuda">En esta versión de prueba, seleccioná la historia y el fragmento manualmente. Más adelante lo conectaremos con los capítulos guardados.</p>
+    </section>
+    <label class="pub-label" for="audienciaPublicacion">¿Quién puede ver la publicación?</label>
+    <div class="pub-audiencia">
+      <label><input type="radio" name="audienciaPublicacion" value="Público" checked> ✨ Público</label>
+      <label><input type="radio" name="audienciaPublicacion" value="Seguidores"> ♡ Seguidores</label>
+      <label><input type="radio" name="audienciaPublicacion" value="Solo yo"> 🔒 Solo yo</label>
+      <label><input type="radio" name="audienciaPublicacion" value="Amigos cercanos"> ☾ Amigos cercanos</label>
+    </div>
+    <div class="pub-acciones">
+      <button class="pub-btn principal" type="submit">➤ Publicar</button>
+      <button class="pub-btn" type="button" onclick="guardarBorradorPublicacion()">▣ Guardar borrador</button>
+      <button class="pub-btn" type="button" onclick="mostrarCrear()">Cancelar</button>
+    </div>
+    <p class="pub-ayuda">Nota: las publicaciones quedan guardadas en este dispositivo. Todavía no se envían a otros usuarios porque VS uniVerSo aún no tiene un servidor conectado.</p>
+  </form>
+</main>
+
+<!-- EXPLORAR -->
+<main id="explorar" class="pantalla pantalla-original" aria-label="Explorar"><iframe id="marco-explorar" title="VS uniVerSo — Explorar" loading="eager"></iframe></main>
+
+<!-- NOTIFICACIONES -->
+<main id="notificaciones" class="pantalla pantalla-original" aria-label="Notificaciones"><iframe id="marco-notificaciones" title="VS uniVerSo — Notificaciones" loading="eager"></iframe></main>
+
+<!-- PERFIL -->
+<main id="perfil" class="pantalla pantalla-original" aria-label="Perfil"><iframe id="marco-perfil" title="VS uniVerSo — Perfil" loading="eager"></iframe></main>
+
+<!-- =========================
+JAVASCRIPT
+========================== -->
+<script>
+let rolSeleccionado = "";
+let usuarioRegistrado = "";
+window.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("main.pantalla").forEach(function (pantalla) { pantalla.style.display = "none"; });
+  document.getElementById("bienvenida").style.display = "block";
+});
+function seleccionarRol(rol) {
+rolSeleccionado = rol;
+document.getElementById("rolElegido").textContent =
+"Cuenta de " + rol;
+ocultarPantallas();
+document.getElementById("registro").style.display = "block";
+}
+function ocultarPantallas() {
+document.getElementById("bienvenida").style.display = "none";
+document.getElementById("login").style.display = "none";
+document.getElementById("crearCuenta").style.display = "none";
+document.getElementById("registro").style.display = "none";
+document.getElementById("confirmacion").style.display = "none";
+document.getElementById("inicio").style.display = "none";
+document.getElementById("crear").style.display = "none";
+document.getElementById("elaborarHistoria").style.display = "none";
+document.getElementById("crearPublicacion").style.display = "none";
+document.getElementById("explorar").style.display = "none";
+document.getElementById("notificaciones").style.display = "none";
+document.getElementById("perfil").style.display = "none";
+}
+function mostrarLogin() {
+ocultarPantallas();
+document.getElementById("login").style.display = "block";
+}
+function mostrarCrearCuenta() {
+ocultarPantallas();
+document.getElementById("crearCuenta").style.display = "block";
+}
+function volverBienvenida() {
+ocultarPantallas();
+document.getElementById("bienvenida").style.display = "block";
+}
+function crearCuentaUsuario() {
+  const campoNombre = document.getElementById("nombreUsuario");
+  const campoCorreo = document.getElementById("correo");
+  const campoContrasena = document.getElementById("contrasena");
+  const campoConfirmar = document.getElementById("confirmarContrasena");
+
+  if (!campoNombre || !campoCorreo || !campoContrasena || !campoConfirmar) {
+    alert("No se encontró el formulario de registro. Cerrá esta ventana y abrí el archivo HTML actualizado.");
+    return;
+  }
+  const nombre = campoNombre.value.trim();
+  const correo = campoCorreo.value.trim();
+  const contrasena = campoContrasena.value;
+  const confirmar = campoConfirmar.value;
+
+  if (!nombre || !correo || !contrasena || !confirmar) {
+    alert("Por favor, completá todos los campos.");
+    return;
+  }
+  if (!campoCorreo.checkValidity()) {
+    alert("Ingresá un correo electrónico válido.");
+    campoCorreo.focus();
+    return;
+  }
+  if (contrasena !== confirmar) {
+    alert("Las contraseñas no coinciden.");
+    campoConfirmar.focus();
+    return;
+  }
+
+  usuarioRegistrado = nombre;
+  ocultarPantallas();
+  const confirmacion = document.getElementById("confirmacion");
+  if (confirmacion) {
+    confirmacion.style.display = "block";
+  } else {
+    const inicio = document.getElementById("inicio");
+    if (inicio) inicio.style.display = "block";
+  }
+}
+function irAlInicio() {
+ocultarPantallas();
+document.getElementById("inicio").style.display = "block";
+renderizarPublicacionesUsuario();
+}
+function abrirSeccionInicio(nombre) {
+  ocultarPantallas();
+  const secciones = {
+    "Explorar": "explorar",
+    "Notificaciones": "notificaciones",
+    "Perfil": "perfil"
+  };
+  const id = secciones[nombre];
+  if (id) document.getElementById(id).style.display = "block";
+  if (nombre === "Perfil") {
+    sincronizarDatosPerfil();
+  }
+}
+function cerrarMenusPublicacion(excepto) {
+  document.querySelectorAll('.publicacion-menu-panel').forEach(panel => {
+    if (panel !== excepto) { panel.hidden = true; const b = panel.parentElement.querySelector('.publicacion-menu'); if (b) b.setAttribute('aria-expanded','false'); }
+  });
+}
+function mostrarOpcionesPublicacion(boton, esPropia, idPublicacion) {
+  const wrap = boton.closest('.publicacion-menu-wrap');
+  if (!wrap) return;
+  let panel = wrap.querySelector('.publicacion-menu-panel');
+  if (panel && !panel.hidden) { panel.hidden = true; boton.setAttribute('aria-expanded','false'); return; }
+  cerrarMenusPublicacion(panel);
+  if (!panel) {
+    panel = document.createElement('div'); panel.className = 'publicacion-menu-panel'; panel.hidden = true;
+    const reportar = document.createElement('button'); reportar.className = 'reportar'; reportar.type = 'button'; reportar.textContent = '⚑  Reportar contenido';
+    reportar.onclick = () => { panel.hidden = true; boton.setAttribute('aria-expanded','false'); const motivo = prompt('¿Por qué querés reportar esta publicación?\n\n1. Contenido ofensivo\n2. Acoso o amenazas\n3. Contenido inapropiado\n4. Otro motivo\n\nEscribí el número de la opción.'); if (motivo && motivo.trim()) alert('Gracias por avisarnos. Tu reporte quedó registrado en esta demostración.'); };
+    panel.appendChild(reportar);
+    if (esPropia) {
+      const eliminar = document.createElement('button'); eliminar.type = 'button'; eliminar.textContent = '🗑  Eliminar publicación';
+      eliminar.onclick = () => { panel.hidden = true; boton.setAttribute('aria-expanded','false'); if (confirm('¿Querés eliminar esta publicación de este dispositivo?')) { const lista = obtenerPublicacionesGuardadas().filter(x => x.id !== idPublicacion); localStorage.setItem('vsUniversoPublicaciones', JSON.stringify(lista)); renderizarPublicacionesUsuario(); sincronizarContenidoPerfilVS(); } };
+      panel.appendChild(eliminar);
+    }
+    wrap.appendChild(panel);
+  }
+  panel.hidden = false; boton.setAttribute('aria-expanded','true');
+}
+document.addEventListener('click', function(event) { if (!event.target.closest('.publicacion-menu-wrap')) cerrarMenusPublicacion(null); });
+
+function alternarMeGusta(boton) {
+  const activo = boton.textContent.trim() === "❤️" || boton.textContent.trim() === "♥";
+  boton.textContent = activo ? "🤍" : "❤️";
+  boton.style.color = activo ? "#8d7eaa" : "#d778a9";
+}
+function alternarGuardado(boton) {
+  const activo = boton.textContent.trim() === "🔖" && boton.dataset.guardado === "si";
+  boton.textContent = activo ? "🔖" : "🔖";
+  boton.dataset.guardado = activo ? "no" : "si";
+  boton.style.color = activo ? "#8d7eaa" : "#8f4ca0";
+  boton.style.opacity = activo ? ".65" : "1";
+}
+
+function mostrarCrear() {
+ocultarPantallas();
+document.getElementById("crear").style.display = "block";
+}
+function mostrarElaborarHistoria() {
+if (rolSeleccionado !== "Escritor") {
+alert("Esta función está disponible para cuentas de Escritor.");
+return;
+}
+ocultarPantallas();
+document.getElementById("elaborarHistoria").style.display = "block";
+limpiarFormularioHistoria();
+}
+function limpiarFormularioHistoria() {
+  const formulario = document.getElementById("elaborarHistoria");
+  if (!formulario) return;
+  formulario.querySelectorAll('input[type="text"], input[type="url"], textarea').forEach(function(campo) { campo.value = ""; });
+  formulario.querySelectorAll('input[type="checkbox"]').forEach(function(campo) { campo.checked = campo.id === "obraPropiaHistoria"; });
+  formulario.querySelectorAll('input[name="visibilidadHistoria"]').forEach(function(campo) { campo.checked = campo.value === "ATP"; });
+  const personalizado = document.getElementById("generoPersonalizado");
+  if (personalizado) personalizado.style.display = "none";
+  const adaptacion = document.getElementById("adaptacionHistoria");
+  if (adaptacion) adaptacion.style.display = "none";
+  const portada = document.getElementById("vistaPortadaHistoria");
+  if (portada) { portada.removeAttribute("src"); portada.style.display = "none"; }
+  const portadaContenido = document.getElementById("portadaContenido");
+  if (portadaContenido) portadaContenido.style.display = "";
+}
+
+function alternarPanelGeneros() {
+document.getElementById("panelGeneros").classList.toggle("activo");
+}
+
+document.addEventListener("change", function(evento) {
+if (evento.target && evento.target.id === "generoOtro") {
+const campo = document.getElementById("generoPersonalizado");
+if (evento.target.checked) {
+campo.style.display = "block";
+} else {
+campo.style.display = "none";
+campo.value = "";
+}
+}
+});
+
+function alternarAdaptacion() {
+const bloque = document.getElementById("adaptacionHistoria");
+bloque.style.display = bloque.style.display === "block" ? "none" : "block";
+}
+
+function obtenerDatosHistoria() {
+const generos = [];
+document.querySelectorAll('input[name="genero"]:checked').forEach(function(genero) {
+if (genero.id === "generoOtro") {
+const personalizado = document.getElementById("generoPersonalizado").value.trim();
+if (personalizado !== "") generos.push(personalizado);
+} else {
+generos.push(genero.value);
+}
+});
+const visibilidad = document.querySelector('input[name="visibilidadHistoria"]:checked');
+return {
+titulo: document.getElementById("tituloHistoria").value.trim(),
+sinopsis: document.getElementById("sinopsisHistoria").value.trim(),
+generos: generos,
+obraPropia: document.getElementById("obraPropiaHistoria").checked,
+esAdaptacion: document.getElementById("adaptacionHistoria").style.display === "block",
+tituloAdaptacion: document.getElementById("tituloAdaptacion").value.trim(),
+autorAdaptacion: document.getElementById("autorAdaptacion").value.trim(),
+visibilidad: visibilidad ? visibilidad.value : "ATP",
+tituloCapitulo: document.getElementById("tituloCapitulo").value.trim(),
+contenidoCapitulo: document.getElementById("contenidoCapitulo").value.trim(),
+portada: (document.getElementById("vistaPortadaHistoria").style.display !== "none" ? document.getElementById("vistaPortadaHistoria").src : "")
+};
+}
+
+function guardarComoBorrador() {
+const datos = obtenerDatosHistoria();
+try {
+datos.estado = "borrador";
+datos.fechaGuardado = new Date().toISOString();
+localStorage.setItem("vsUniversoBorradorHistoria", JSON.stringify(datos));
+const marcoPerfilActual = document.getElementById("marco-perfil");
+if (marcoPerfilActual && marcoPerfilActual.contentWindow) { marcoPerfilActual.contentWindow.postMessage({type:"vs-recargar-historias"}, "*"); }
+alert("¡Tu historia quedó guardada como borrador! Podés encontrarla en Perfil → Mis borradores.");
+} catch (error) {
+alert("No se pudo guardar el borrador. Si agregaste una portada muy pesada, probá con una imagen más pequeña.");
+}
+}
+
+function cargarBorradorHistoria() {
+const guardado = localStorage.getItem("vsUniversoBorradorHistoria");
+if (!guardado) return;
+try {
+const datos = JSON.parse(guardado);
+document.getElementById("tituloHistoria").value = datos.titulo || "";
+document.getElementById("sinopsisHistoria").value = datos.sinopsis || "";
+document.querySelectorAll('input[name="genero"]').forEach(function(genero) {
+genero.checked = Array.isArray(datos.generos) && datos.generos.includes(genero.value);
+});
+if (Array.isArray(datos.generos)) {
+const otro = document.getElementById("generoOtro");
+const personalizado = datos.generos.find(function(g) { return !["Ficción","Acción","Fantasía","Fanfic","Thriller / Asesinato","Suspenso","Comedia","Dark","Dark romance","Romance"].includes(g); });
+if (personalizado) {
+otro.checked = true;
+document.getElementById("generoPersonalizado").value = personalizado;
+document.getElementById("generoPersonalizado").style.display = "block";
+}
+}
+document.getElementById("obraPropiaHistoria").checked = datos.obraPropia !== false;
+if (datos.esAdaptacion) {
+document.getElementById("adaptacionHistoria").style.display = "block";
+document.getElementById("tituloAdaptacion").value = datos.tituloAdaptacion || "";
+document.getElementById("autorAdaptacion").value = datos.autorAdaptacion || "";
+}
+const radio = document.querySelector('input[name="visibilidadHistoria"][value="' + (datos.visibilidad || "ATP") + '"]');
+if (radio) radio.checked = true;
+document.getElementById("tituloCapitulo").value = datos.tituloCapitulo || "";
+document.getElementById("contenidoCapitulo").value = datos.contenidoCapitulo || "";
+if (datos.portada) {
+const imagenPortada = document.getElementById("vistaPortadaHistoria");
+imagenPortada.src = datos.portada;
+imagenPortada.style.display = "block";
+document.getElementById("portadaContenido").style.display = "none";
+}
+} catch (error) {
+console.log("No se pudo cargar el borrador.", error);
+}
+}
+
+function continuarBorradorHistoria() {
+  ocultarPantallas();
+  document.getElementById("elaborarHistoria").style.display = "block";
+  cargarBorradorHistoria();
+  document.getElementById("elaborarHistoria").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function publicarHistoria() {
+const datos = obtenerDatosHistoria();
+if (datos.titulo === "" || datos.sinopsis === "" || datos.generos.length === 0 || datos.tituloCapitulo === "" || datos.contenidoCapitulo === "") {
+alert("Antes de publicar, completá el título, la sinopsis, al menos un género y el primer capítulo.");
+return;
+}
+if (document.getElementById("generoOtro").checked && document.getElementById("generoPersonalizado").value.trim() === "") {
+alert("Escribí el género personalizado o desmarcá la opción «Otro».");
+return;
+}
+if (datos.esAdaptacion && (datos.tituloAdaptacion === "" || datos.autorAdaptacion === "")) {
+alert("Completá el título y el autor de la obra original o desactivá la opción de adaptación.");
+return;
+}
+try {
+const publicadas = JSON.parse(localStorage.getItem("vsUniversoHistoriasPublicadas") || "[]");
+datos.id = "historia-" + Date.now();
+datos.estado = "publicada";
+datos.fechaPublicacion = new Date().toISOString();
+publicadas.push(datos);
+localStorage.setItem("vsUniversoHistoriasPublicadas", JSON.stringify(publicadas));
+const marcoPerfilActual = document.getElementById("marco-perfil");
+if (marcoPerfilActual && marcoPerfilActual.contentWindow) { marcoPerfilActual.contentWindow.postMessage({type:"vs-recargar-historias"}, "*"); }
+localStorage.removeItem("vsUniversoBorradorHistoria");
+alert("¡Tu historia se publicó en este prototipo y quedó guardada en este dispositivo! La publicación todavía no aparece para otros usuarios porque falta conectar el servidor de VS uniVerSo.");
+} catch (error) {
+alert("No se pudo publicar la historia en este dispositivo. Probá con una portada más pequeña o quitá la imagen para intentarlo de nuevo.");
+}
+}
+
+function previsualizarPortada(evento) {
+const archivo = evento.target.files[0];
+if (!archivo) return;
+const lector = new FileReader();
+lector.onload = function(e) {
+const imagen = document.getElementById("vistaPortadaHistoria");
+const contenido = document.getElementById("portadaContenido");
+imagen.src = e.target.result;
+imagen.style.display = "block";
+contenido.style.display = "none";
+};
+lector.readAsDataURL(archivo);
+}
+
+function aplicarFormatoEditor() {
+const editor = document.getElementById("contenidoCapitulo");
+const tipo = document.getElementById("tipoLetraHistoria").value;
+const tamano = document.getElementById("tamanoLetraHistoria").value;
+const color = document.getElementById("colorLetraHistoria").value;
+if (tipo && tipo !== "Tipo de letra") editor.style.fontFamily = tipo;
+if (tamano) editor.style.fontSize = tamano;
+if (color) editor.style.color = color;
+}
+
+function alternarFormato(formato) {
+const editor = document.getElementById("contenidoCapitulo");
+if (formato === "bold") editor.style.fontWeight = editor.style.fontWeight === "bold" ? "normal" : "bold";
+if (formato === "underline") editor.style.textDecoration = editor.style.textDecoration === "underline" ? "none" : "underline";
+if (formato === "italic") editor.style.fontStyle = editor.style.fontStyle === "italic" ? "normal" : "italic";
+editor.focus();
+}
+
+// =========================
+// CREAR PUBLICACIÓN
+// =========================
+let archivoPublicacionData = '';
+let nombreArchivoPublicacion = '';
+function mostrarCrearPublicacion(){
+  ocultarPantallas();
+  document.getElementById('crearPublicacion').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function seleccionarTipoPublicacion(tipo,boton){
+  document.getElementById('tipoPublicacion').value=tipo;
+  document.querySelectorAll('#crearPublicacion .pub-tipo').forEach(b=>b.classList.toggle('activo',b===boton));
+  ['Imagen','Video','Fragmento'].forEach(nombre=>{
+    const id='panel'+nombre+'Publicacion';
+    const panel=document.getElementById(id);
+    if(panel)panel.classList.toggle('activo',tipo.toLowerCase()===nombre.toLowerCase());
+  });
+}
+function previsualizarArchivoPublicacion(evento,tipo){
+  const archivo=evento.target.files&&evento.target.files[0];
+  if(!archivo)return;
+  const max=tipo==='video'?8*1024*1024:4*1024*1024;
+  if(archivo.size>max){alert(tipo==='video'?'El video pesa más de 8 MB. Elegí uno más liviano.':'La imagen pesa más de 4 MB. Elegí una imagen más liviana.');evento.target.value='';return;}
+  const lector=new FileReader();
+  lector.onload=function(){
+    archivoPublicacionData=lector.result;nombreArchivoPublicacion=archivo.name;
+    if(tipo==='imagen'){
+      const img=document.getElementById('previewImagenPublicacion');img.src=lector.result;img.style.display='block';
+    }else{
+      const video=document.getElementById('previewVideoPublicacion');video.src=lector.result;video.style.display='block';
+    }
+  };
+  lector.readAsDataURL(archivo);
+}
+function datosFormularioPublicacion(){
+  const tipo=document.getElementById('tipoPublicacion').value;
+  const fragmento=tipo==='fragmento';
+  const texto=fragmento?document.getElementById('textoFragmento').value.trim():document.getElementById('textoPublicacion').value.trim();
+  const audiencia=document.querySelector('input[name="audienciaPublicacion"]:checked');
+  return {id:'pub-'+Date.now(),tipo:tipo,texto:texto,archivo:archivoPublicacionData,nombreArchivo:nombreArchivoPublicacion,
+    historia:fragmento?document.getElementById('libroFragmento').value:'',
+    capitulo:fragmento?document.getElementById('capituloFragmento').value.trim():'',
+    audiencia:audiencia?audiencia.value:'Público',fecha:new Date().toISOString(),autor:usuarioRegistrado||'Tu usuario'};
+}
+function obtenerPublicacionesGuardadas(){try{return JSON.parse(localStorage.getItem('vsUniversoPublicaciones')||'[]')}catch(e){return []}}
+function guardarPublicacionLocal(datos){
+  const lista=obtenerPublicacionesGuardadas();lista.unshift(datos);
+  try{localStorage.setItem('vsUniversoPublicaciones',JSON.stringify(lista));return true}
+  catch(e){alert('No se pudo guardar. Puede que la imagen o el video sea demasiado pesado; probá con un archivo más pequeño.');return false}
+}
+function publicarPublicacion(evento){
+  evento.preventDefault();const datos=datosFormularioPublicacion();
+  if(!datos.texto && !datos.archivo){alert('Escribí algo o agregá un contenido antes de publicar.');return;}
+  if(datos.tipo==='fragmento'&&!datos.historia){alert('Elegí la historia de la que querés compartir el fragmento.');return;}
+  if(!guardarPublicacionLocal(datos))return;
+  document.getElementById('formCrearPublicacion').reset();
+  archivoPublicacionData='';nombreArchivoPublicacion='';
+  ['previewImagenPublicacion','previewVideoPublicacion'].forEach(id=>{const el=document.getElementById(id);el.removeAttribute('src');el.style.display='none'});
+  seleccionarTipoPublicacion('texto',document.querySelector('#crearPublicacion .pub-tipo[data-tipo="texto"]'));
+  alert('¡Tu publicación quedó guardada en este dispositivo! ✨');
+  irAlInicio();renderizarPublicacionesUsuario();sincronizarContenidoPerfilVS();
+}
+function guardarBorradorPublicacion(){
+  const datos=datosFormularioPublicacion();
+  if(!datos.texto&&!datos.archivo){alert('Escribí algo o agregá un contenido para guardar el borrador.');return;}
+  try{localStorage.setItem('vsUniversoBorradorPublicacion',JSON.stringify(datos));alert('Borrador guardado en este dispositivo. ✨');}
+  catch(e){alert('No se pudo guardar el borrador. Probá con un archivo más liviano.');}
+}
+function renderizarPublicacionesUsuario(){
+  const inicio=document.getElementById('inicio');if(!inicio)return;
+  const publicaciones=obtenerPublicacionesGuardadas();
+  inicio.querySelectorAll('[data-publicacion-usuario="true"]').forEach(el=>el.remove());
+  const ancla=inicio.querySelector('.inicio-momentos');if(!ancla)return;
+  publicaciones.filter(p=>p.audiencia!=='Solo yo').forEach(p=>{
+    const article=document.createElement('article');article.className='inicio-publicacion';article.dataset.publicacionUsuario='true';
+    const autor=document.createElement('div');autor.className='publicacion-autor';
+    const avatar=document.createElement('span');avatar.className='publicacion-avatar';avatar.textContent='🌙';
+    const identidad=document.createElement('div');const nombre=document.createElement('div');nombre.className='publicacion-nombre';nombre.textContent=p.autor||'Tu usuario';
+    const tiempo=document.createElement('div');tiempo.className='publicacion-tiempo';tiempo.textContent='Recién publicado · '+(p.audiencia||'Público');identidad.append(nombre,tiempo);
+    const menuWrap=document.createElement('div');menuWrap.className='publicacion-menu-wrap';const menu=document.createElement('button');menu.className='publicacion-menu';menu.type='button';menu.textContent='⋯';menu.title='Más opciones';menu.setAttribute('aria-label','Más opciones de la publicación');menu.setAttribute('aria-expanded','false');menu.onclick=()=>mostrarOpcionesPublicacion(menu,true,p.id);menuWrap.append(menu);
+    autor.append(avatar,identidad,menuWrap);article.append(autor);
+    if(p.texto){const texto=document.createElement('p');texto.className='publicacion-texto';texto.textContent=p.texto;article.append(texto)}
+    if(p.tipo==='fragmento'){
+      const detalle=document.createElement('p');detalle.className='publicacion-texto';detalle.textContent='📖 '+(p.historia||'Historia')+(p.capitulo?' · '+p.capitulo:'');article.append(detalle);
+    }
+    if(p.tipo==='imagen'&&p.archivo){const img=document.createElement('img');img.src=p.archivo;img.alt='Imagen de la publicación';img.style.cssText='width:100%;max-height:320px;object-fit:contain;border-radius:15px;background:#fff';article.append(img)}
+    if(p.tipo==='video'&&p.archivo){const video=document.createElement('video');video.src=p.archivo;video.controls=true;video.style.cssText='width:100%;max-height:320px;border-radius:15px;background:#211a2d';article.append(video)}
+    const acciones=document.createElement('div');acciones.className='publicacion-acciones';
+    const like=document.createElement('button');like.type='button';like.textContent='🤍';like.setAttribute('aria-label','Me gusta');like.onclick=()=>{const activo=like.textContent==='❤️';like.textContent=activo?'🤍':'❤️';like.style.color=activo?'#8d7eaa':'#d778a9'};
+    const comentario=document.createElement('button');comentario.type='button';comentario.textContent='💬';comentario.setAttribute('aria-label','Comentar');comentario.onclick=()=>alert('Los comentarios los conectaremos más adelante.');
+    const compartir=document.createElement('button');compartir.type='button';compartir.textContent='↗️';compartir.setAttribute('aria-label','Compartir');compartir.onclick=()=>alert('La opción para compartir la conectaremos más adelante.');
+    const guardar=document.createElement('button');guardar.type='button';guardar.className='guardar';guardar.textContent='🔖';guardar.setAttribute('aria-label','Guardar');guardar.onclick=()=>{const activo=guardar.dataset.guardado==='si';guardar.dataset.guardado=activo?'no':'si';guardar.style.color=activo?'#8d7eaa':'#8f4ca0'};
+    acciones.append(like,comentario,compartir,guardar);article.append(acciones);ancla.after(article);
+  });
+}
+
+const botonRegistro = document.getElementById("botonCrearCuentaRegistro");
+if (botonRegistro) {
+  botonRegistro.addEventListener("click", function () {
+    crearCuentaUsuario();
+  });
+}
+
+
+let generoExplorarActivo = "Todos";
+function filtrarExplorar() {
+  const texto = (document.getElementById("buscarExplorar").value || "").toLowerCase().trim();
+  let visibles = 0;
+  document.querySelectorAll(".explorar-item").forEach(function(item) {
+    const coincideTexto = item.dataset.busqueda.toLowerCase().includes(texto);
+    const coincideGenero = generoExplorarActivo === "Todos" || item.dataset.genero === generoExplorarActivo;
+    item.style.display = coincideTexto && coincideGenero ? "block" : "none";
+    if (coincideTexto && coincideGenero) visibles++;
+  });
+  document.getElementById("sinResultadosExplorar").style.display = visibles ? "none" : "block";
+}
+function filtrarGenero(genero, boton) {
+  generoExplorarActivo = genero;
+  document.querySelectorAll("#filtrosExplorar .app-chip").forEach(function(chip){chip.classList.remove("activo");});
+  boton.classList.add("activo");
+  filtrarExplorar();
+}
+function marcarLeida(boton) {
+  const tarjeta = boton.closest(".notificacion");
+  tarjeta.dataset.leida = "true";
+  tarjeta.classList.add("leida");
+  const acciones = boton.closest(".notif-acciones");
+  acciones.innerHTML = '<button class="app-accion" onclick="marcarNoLeida(this)">Marcar como no leída</button>';
+}
+function marcarNoLeida(boton) {
+  const tarjeta = boton.closest(".notificacion");
+  tarjeta.dataset.leida = "false";
+  tarjeta.classList.remove("leida");
+  const acciones = boton.closest(".notif-acciones");
+  acciones.innerHTML = '<button class="app-accion" onclick="marcarLeida(this)">Marcar como leída</button>';
+}
+function marcarTodasLeidas() {
+  document.querySelectorAll("#listaNotificaciones .notificacion").forEach(function(tarjeta) {
+    tarjeta.dataset.leida = "true";
+    tarjeta.classList.add("leida");
+    const acciones = tarjeta.querySelector(".notif-acciones");
+    if (acciones) acciones.innerHTML = '<button class="app-accion" onclick="marcarNoLeida(this)">Marcar como no leída</button>';
+  });
+}
+function darMeGustaComentario(boton) {
+  const activo = boton.dataset.liked === "true";
+  boton.dataset.liked = activo ? "false" : "true";
+  boton.textContent = activo ? "♡ Me gusta" : "♥ Te gusta";
+  boton.style.background = activo ? "#f7efff" : "#f3dfef";
+}
+function mostrarPerfilPanel(nombre, boton) {
+  document.querySelectorAll(".perfil-tabs button").forEach(function(b){b.classList.remove("activo");});
+  boton.classList.add("activo");
+  document.querySelectorAll(".perfil-panel").forEach(function(p){p.classList.remove("activo");});
+  const panel = document.getElementById("perfil" + nombre.charAt(0).toUpperCase() + nombre.slice(1));
+  if (panel) panel.classList.add("activo");
+}
+function filtrarHistoriasPerfil(tipo, boton) {
+  document.querySelectorAll("#perfilHistorias .app-chip").forEach(function(chip){chip.classList.remove("activo");});
+  boton.classList.add("activo");
+  document.querySelectorAll(".historia-perfil-item").forEach(function(item) {
+    item.style.display = item.dataset.tipo === tipo ? "block" : "none";
+  });
+}
+
+
+// Cargamos los tres diseños originales dentro de marcos aislados para preservar su apariencia y sus interacciones.
+const documentosOriginales = {
+  explorar: "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>VS uniVerSo — Explorar</title>\n<style>\n:root{--ink:#514080;--violet:#765bb0;--pink:#e6a8d2;--line:#d9c5eb;--cream:#fff9f1;--rose:#faeaf4;--lav:#eee6fb}\n*{box-sizing:border-box}\nbody{margin:0;color:var(--ink);font-family:\"Trebuchet MS\",Arial,sans-serif;background:radial-gradient(ellipse at 10% 10%,#fff8ef 0,transparent 38%),radial-gradient(ellipse at 90% 25%,#f8dfee 0,transparent 40%),linear-gradient(135deg,#f6efff,#fff4f5 55%,#f1e8ff);min-height:100vh}\nbutton,input{font:inherit;color:inherit}\nbutton{cursor:pointer}\n.app{max-width:1100px;margin:auto;min-height:100vh;padding:18px 24px 104px;position:relative}\nheader{display:flex;align-items:center;gap:14px;border-bottom:1px solid #e8d8ef;padding:5px 0 15px}\n.back{border:0;background:transparent;font-size:26px;color:var(--violet);padding:4px 8px}\n.brand{flex:1;text-align:center;font-family:Georgia,serif;font-size:clamp(25px,4vw,38px);letter-spacing:-1px;color:#7353a0}\n.brand .v{color:#e5bf64}.brand .s{color:#e89fc8}\n.star{color:#c79b53;font-size:23px}\n.settings{border:1px solid var(--line);background:#fff8;border-radius:50%;width:38px;height:38px;font-size:21px}\nh1{font:clamp(32px,4vw,43px) Georgia,serif;margin:16px 0 2px;color:#60469a}\n.subtitle{margin:0 0 16px;color:#8070a5;font-size:16px}\n.search{display:flex;align-items:center;gap:10px;border:1px solid #cdb7e3;background:#fff9;border-radius:30px;padding:10px 16px;max-width:760px}\n.search span{font-size:22px}.search input{width:100%;border:0;outline:0;background:transparent;font-size:15px}\n.quick-filters{display:flex;gap:8px;overflow-x:auto;padding:13px 0 7px}\n.chip{border:1px solid var(--line);background:#fff8;border-radius:22px;padding:8px 16px;white-space:nowrap;font-size:14px}\n.chip.active{background:linear-gradient(120deg,#f6cfe7,#eee0ff);border-color:#c69bdc;box-shadow:0 2px 8px #c6a8dc44}\n.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0 9px}\n.section-head h2{font:24px Georgia,serif;margin:0}.section-head h2:before{content:\"✧\";color:#c79b53;margin-right:10px}\n.text-link{border:0;background:transparent;color:#7860a8;white-space:nowrap}\n.genre-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}\n.genre{border:1px solid var(--line);background:#fff7;border-radius:22px;padding:8px 6px;font-size:13px;min-height:36px}\n.genre:before{content:\"✧\";color:#d69dcc;margin-right:7px}\n.books{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}\n.book{border:1px solid var(--line);background:#fff9;border-radius:16px;padding:8px;min-width:0;box-shadow:0 4px 12px #8c6eb20b}\n.cover{height:135px;border-radius:10px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;font:24px Georgia,serif;color:#fffafc;text-shadow:0 2px 8px #49376a66;padding:10px;background:radial-gradient(circle at 50% 22%,#fff4ca 0 3%,transparent 4%),linear-gradient(155deg,#6d65a8,#dca5d1 50%,#ffe0c8)}\n.cover.c2{background:radial-gradient(circle at 50% 72%,#6b5b8d 0 9%,transparent 10%),linear-gradient(160deg,#514b86,#e9b5d5 60%,#ffdcb8)}\n.cover.c3{background:radial-gradient(circle at 75% 20%,#fff0c4 0 4%,transparent 5%),linear-gradient(160deg,#9d9ed5,#f5c4d8 55%,#fff0d6)}\n.book h3{font:16px Georgia,serif;margin:8px 0 3px;line-height:1.2}\n.author{font-size:13px;color:#8b7aa9;margin:0 0 8px}\n.tags{display:flex;gap:5px;flex-wrap:wrap}.tag{font-size:11px;border:1px solid #e4c7e5;border-radius:15px;padding:4px 7px;background:#fff5}\n.authors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}\n.author-card{text-align:center;background:#fff5;border:1px solid #e2d1ef;border-radius:14px;padding:12px 6px}\n.avatar{width:58px;height:58px;margin:0 auto 6px;border-radius:50%;display:grid;place-items:center;font-size:30px;background:linear-gradient(135deg,#e9d9ff,#f8c8dc);border:2px solid #fff;box-shadow:0 0 0 1px #c9a9e3}\n.author-card strong{display:block;font-size:14px}.author-card small{color:#8978a8}\n.empty{display:none;padding:18px;text-align:center;color:#8876a7}\nnav{position:fixed;z-index:5;bottom:10px;left:50%;transform:translateX(-50%);width:min(620px,calc(100% - 24px));display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px;background:#fff9;border:1px solid #d8c2eb;border-radius:30px;box-shadow:0 8px 30px #8a6ca526;backdrop-filter:blur(12px)}\nnav button{border:0;background:transparent;border-radius:22px;padding:4px 2px;display:flex;align-items:center;flex-direction:column;gap:2px;font-size:11px;color:#8572a6}\nnav button .ico{font-size:22px;line-height:1.2}nav button.active{color:#b64da7;background:#f7e3f5}\n@media(min-width:850px){.app{padding-left:40px;padding-right:40px}.cover{height:170px}.genre-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}\n@media(max-width:600px){.app{padding:12px 14px 96px}.genre-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.books{gap:8px}.cover{height:112px;font-size:19px}.book h3{font-size:14px}.authors{gap:6px}.author-card{padding:9px 3px}.avatar{width:48px;height:48px}.section-head h2{font-size:21px}.subtitle{font-size:14px}}\n</style>\n</head>\n<body>\n<div class=\"app\">\n<header>\n  <button class=\"back\" title=\"Volver\" onclick=\"parent.postMessage({type:'vs-nav',section:'Inicio'},'*')\">‹</button>\n  <span class=\"star\">✧</span>\n  <div class=\"brand\"><span class=\"v\">V</span><span class=\"s\">S</span> uniVerSo</div>\n  <span class=\"star\">✧</span>\n  <button class=\"settings\" title=\"Configuración\" onclick=\"alert('Configuración: la conectaremos más adelante.')\">⚙</button>\n</header>\n<main>\n<h1>Explorar</h1>\n<p class=\"subtitle\">Descubrí nuevas historias, autores y géneros.</p>\n<label class=\"search\"><span>⌕</span><input id=\"busqueda\" type=\"search\" placeholder=\"Buscar historias, autores, géneros...\" aria-label=\"Buscar historias, autores o géneros\"></label>\n<div class=\"quick-filters\" id=\"filtrosRapidos\">\n<button class=\"chip active\" data-filter=\"Todos\">Todos</button>\n<button class=\"chip\" data-filter=\"Ficción\">Ficción</button>\n<button class=\"chip\" data-filter=\"Acción\">Acción</button>\n<button class=\"chip\" data-filter=\"Fantasía\">Fantasía</button>\n<button class=\"chip\" data-filter=\"Romance\">Romance</button>\n</div>\n<section>\n<div class=\"section-head\"><h2>Géneros</h2><button class=\"text-link\" id=\"verTodosGeneros\">Ver todos →</button></div>\n<div class=\"genre-grid\" id=\"generos\">\n<button class=\"genre\" data-filter=\"Ficción\">Ficción</button><button class=\"genre\" data-filter=\"Acción\">Acción</button><button class=\"genre\" data-filter=\"Fantasía\">Fantasía</button><button class=\"genre\" data-filter=\"Romance\">Romance</button>\n<button class=\"genre\" data-filter=\"Thriller\">Thriller</button><button class=\"genre\" data-filter=\"Suspenso\">Suspenso</button><button class=\"genre\" data-filter=\"Comedia\">Comedia</button><button class=\"genre\" data-filter=\"Otro\">Otro</button>\n<button class=\"genre extra\" data-filter=\"Fanfic\">Fanfic</button><button class=\"genre extra\" data-filter=\"Dark\">Dark</button><button class=\"genre extra\" data-filter=\"Terror\">Terror</button><button class=\"genre extra\" data-filter=\"Aventura\">Aventura</button>\n<button class=\"genre extra\" data-filter=\"Misterio\">Misterio</button><button class=\"genre extra\" data-filter=\"Drama\">Drama</button><button class=\"genre extra\" data-filter=\"Slice of life\">Slice of life</button><button class=\"genre extra\" data-filter=\"Más\">＋ Más</button>\n</div>\n</section>\n<section>\n<div class=\"section-head\"><h2>Historias destacadas</h2><button class=\"text-link\" id=\"verHistorias\">Ver todas →</button></div>\n<div class=\"books\" id=\"listaLibros\">\n<article class=\"book\" data-genre=\"Romance\" data-search=\"el último suspiro lunari romance fantasía\"><div class=\"cover\">☾<br>El último<br>suspiro</div><h3>El último suspiro</h3><p class=\"author\">Lunari</p><div class=\"tags\"><span class=\"tag\">Romance</span><span class=\"tag\">18+</span></div></article>\n<article class=\"book\" data-genre=\"Fantasía\" data-search=\"entre mundos neko fantasía aventura\"><div class=\"cover c2\">✧<br>Entre mundos</div><h3>Entre mundos</h3><p class=\"author\">Neko</p><div class=\"tags\"><span class=\"tag\">Fantasía</span><span class=\"tag\">Apto</span></div></article>\n<article class=\"book\" data-genre=\"Drama\" data-search=\"flores de invierno dani drama romance\"><div class=\"cover c3\">✿<br>Flores de invierno</div><h3>Flores de invierno</h3><p class=\"author\">Dani P.</p><div class=\"tags\"><span class=\"tag\">Drama</span><span class=\"tag\">Apto</span></div></article>\n</div><p class=\"empty\" id=\"sinHistorias\">No encontramos historias con esa búsqueda o filtro.</p>\n</section>\n<section>\n<div class=\"section-head\"><h2>Autores destacados</h2><button class=\"text-link\" id=\"verAutores\">Ver todos →</button></div>\n<div class=\"authors\" id=\"listaAutores\">\n<article class=\"author-card\" data-search=\"lunari escritora romance\"><div class=\"avatar\">🌙</div><strong>Lunari</strong><small>Escritora</small></article>\n<article class=\"author-card\" data-search=\"neko escritor fantasía\"><div class=\"avatar\">🐈‍⬛</div><strong>Neko</strong><small>Escritor</small></article>\n<article class=\"author-card\" data-search=\"dani p escritora drama\"><div class=\"avatar\">🌸</div><strong>Dani P.</strong><small>Escritora</small></article>\n<article class=\"author-card\" data-search=\"kixhi escritora aventura\"><div class=\"avatar\">🦋</div><strong>Kixhi</strong><small>Escritora</small></article>\n</div><p class=\"empty\" id=\"sinAutores\">No encontramos autores con esa búsqueda.</p>\n</section>\n</main>\n</div>\n<nav aria-label=\"Navegación principal\">\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Inicio'},'*')\" ><span class=\"ico\">⌂</span>Inicio</button>\n<button class=\"active\" aria-current=\"page\"><span class=\"ico\">⌕</span>Explorar</button>\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Crear'},'*')\" ><span class=\"ico\">＋</span>Crear</button>\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Notificaciones'},'*')\" ><span class=\"ico\">♧</span>Notificaciones</button>\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Perfil'},'*')\" ><span class=\"ico\">♙</span>Perfil</button>\n</nav>\n<script>\nlet filtroActual=\"Todos\";\nconst busqueda=document.getElementById(\"busqueda\");\nfunction aplicarFiltros(){\n const q=busqueda.value.trim().toLocaleLowerCase(\"es\");\n let visiblesLibros=0,visiblesAutores=0;\n document.querySelectorAll(\"#listaLibros .book\").forEach(el=>{\n  const coincideTexto=(el.dataset.search+\" \"+el.innerText).toLocaleLowerCase(\"es\").includes(q);\n  const coincideGenero=filtroActual===\"Todos\" || (el.dataset.genre+\" \"+el.dataset.search).toLocaleLowerCase(\"es\").includes(filtroActual.toLocaleLowerCase(\"es\"));\n  const mostrar=coincideTexto&&coincideGenero;\n  el.style.display=mostrar?\"\":\"none\";if(mostrar)visiblesLibros++;\n });\n document.querySelectorAll(\"#listaAutores .author-card\").forEach(el=>{\n  const mostrar=(el.dataset.search+\" \"+el.innerText).toLocaleLowerCase(\"es\").includes(q);\n  el.style.display=mostrar?\"\":\"none\";if(mostrar)visiblesAutores++;\n });\n document.getElementById(\"sinHistorias\").style.display=visiblesLibros?\"none\":\"block\";\n document.getElementById(\"sinAutores\").style.display=visiblesAutores?\"none\":\"block\";\n}\nbusqueda.addEventListener(\"input\",aplicarFiltros);\ndocument.querySelectorAll(\"[data-filter]\").forEach(btn=>btn.addEventListener(\"click\",()=>{\n filtroActual=btn.dataset.filter;\n document.querySelectorAll(\"#filtrosRapidos .chip\").forEach(c=>c.classList.toggle(\"active\",c.dataset.filter===filtroActual));\n document.querySelectorAll(\"#generos .genre\").forEach(c=>c.classList.toggle(\"active\",c.dataset.filter===filtroActual));\n aplicarFiltros();\n}));\ndocument.getElementById(\"verTodosGeneros\").addEventListener(\"click\",()=>{\n const extras=document.querySelectorAll(\".genre.extra\");const mostrar=extras[0].style.display!==\"block\";\n extras.forEach(e=>e.style.display=mostrar?\"block\":\"none\");\n document.getElementById(\"verTodosGeneros\").textContent=mostrar?\"Ver menos ↑\":\"Ver todos →\";\n});\ndocument.getElementById(\"verHistorias\").addEventListener(\"click\",()=>{\n filtroActual=\"Todos\";busqueda.value=\"\";aplicarFiltros();\n});\ndocument.getElementById(\"verAutores\").addEventListener(\"click\",()=>{\n busqueda.value=\"\";filtroActual=\"Todos\";aplicarFiltros();\n});\naplicarFiltros();\n<\/script>\n</body>\n</html>",
+  notificaciones: "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>VS uniVerSo — Notificaciones</title>\n<style>\n:root{--ink:#514080;--violet:#765bb0;--pink:#e6a8d2;--line:#d9c5eb;--cream:#fff9f1;--rose:#faeaf4;--lav:#eee6fb}\n*{box-sizing:border-box}\nbody{margin:0;color:var(--ink);font-family:\"Trebuchet MS\",Arial,sans-serif;background:radial-gradient(ellipse at 10% 10%,#fff8ef 0,transparent 38%),radial-gradient(ellipse at 90% 25%,#f8dfee 0,transparent 40%),linear-gradient(135deg,#f6efff,#fff4f5 55%,#f1e8ff);min-height:100vh}\nbutton{font:inherit;color:inherit;cursor:pointer}\n.app{max-width:920px;margin:auto;min-height:100vh;padding:18px 24px 105px}\nheader{display:flex;align-items:center;gap:14px;border-bottom:1px solid #e8d8ef;padding:5px 0 15px}\n.back{border:0;background:transparent;font-size:26px;color:var(--violet);padding:4px 8px}\n.brand{flex:1;text-align:center;font-family:Georgia,serif;font-size:clamp(25px,4vw,38px);letter-spacing:-1px;color:#7353a0}\n.brand .v{color:#e5bf64}.brand .s{color:#e89fc8}\n.star{color:#c79b53;font-size:23px}\n.settings{border:1px solid var(--line);background:#fff8;border-radius:50%;width:38px;height:38px;font-size:21px}\n.heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 6px}\nh1{font:clamp(32px,4vw,43px) Georgia,serif;margin:0;color:#60469a}\n.subtitle{margin:0 0 20px;color:#8070a5}\n.actions{display:flex;gap:8px;flex-wrap:wrap}\n.action{border:1px solid var(--line);background:#fff9;border-radius:20px;padding:9px 13px;font-size:13px}\n.action.primary{background:linear-gradient(120deg,#f6cfe7,#eee0ff);border-color:#c69bdc}\n.summary{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid #e0cbed;border-radius:18px;background:#fff8;margin:16px 0 20px}\n.bell{display:grid;place-items:center;width:45px;height:45px;border-radius:50%;background:linear-gradient(135deg,#f7d5e9,#e8dcff);font-size:23px}\n.summary strong{display:block;font-size:15px}.summary small{color:#8574a5}\n.section-title{font:23px Georgia,serif;margin:22px 0 10px;color:#60469a}\n.list{display:flex;flex-direction:column;gap:10px}\n.notice{display:grid;grid-template-columns:52px minmax(0,1fr) 12px;align-items:start;gap:12px;padding:14px;border:1px solid #dfd0ed;background:#fff9;border-radius:18px;box-shadow:0 3px 12px #8c6eb20a}\n.notice.unread{background:linear-gradient(110deg,#fff9fd,#f3edff);border-color:#d5b8e8}\n.avatar{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;font-size:25px;background:linear-gradient(135deg,#e9d9ff,#f8c8dc);border:2px solid white;box-shadow:0 0 0 1px #d8c1e9}\n.message{font-size:14px;line-height:1.5;margin:0 0 5px}.message strong{color:#60469a}.time{font-size:12px;color:#9283ae}\n.dot{width:9px;height:9px;border-radius:50%;background:#c56bb8;margin-top:6px}\n.notice:not(.unread) .dot{background:transparent}\n.notice-footer{display:flex;justify-content:flex-end;margin-top:8px}\n.small-action{border:0;background:transparent;color:#8966ad;font-size:12px;padding:3px}\n.empty{display:none;text-align:center;padding:24px;color:#8876a7}\nnav{position:fixed;z-index:5;bottom:10px;left:50%;transform:translateX(-50%);width:min(620px,calc(100% - 24px));display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px;background:#fff9;border:1px solid #d8c2eb;border-radius:30px;box-shadow:0 8px 30px #8a6ca526;backdrop-filter:blur(12px)}\nnav button{border:0;background:transparent;border-radius:22px;padding:4px 2px;display:flex;align-items:center;flex-direction:column;gap:2px;font-size:11px;color:#8572a6}\nnav button .ico{font-size:22px;line-height:1.2}nav button.active{color:#b64da7;background:#f7e3f5}\n.toast{display:none;margin:14px 0 0;padding:10px 14px;border-radius:12px;background:#eee6fb;color:#60469a;font-size:13px}\n@media(max-width:600px){.app{padding:12px 14px 96px}.heading{align-items:flex-start;flex-direction:column}.notice{grid-template-columns:42px minmax(0,1fr) 10px;padding:11px;gap:9px}.avatar{width:40px;height:40px;font-size:22px}.message{font-size:13px}.section-title{font-size:21px}}\n</style>\n</head>\n<body>\n<div class=\"app\">\n<header>\n<button class=\"back\" title=\"Volver\" onclick=\"parent.postMessage({type:'vs-nav',section:'Inicio'},'*')\">‹</button>\n<span class=\"star\">✧</span><div class=\"brand\"><span class=\"v\">V</span><span class=\"s\">S</span> uniVerSo</div><span class=\"star\">✧</span>\n<button class=\"settings\" title=\"Configuración\" onclick=\"mostrarAviso('Configuración se conectará más adelante.')\">⚙</button>\n</header>\n<main>\n<div class=\"heading\"><h1>Notificaciones</h1><div class=\"actions\"><button class=\"action primary\" id=\"marcarTodas\">Marcar todas como leídas</button></div></div>\n<p class=\"subtitle\">Las novedades de tu universo, en un solo lugar.</p>\n<div class=\"summary\"><div class=\"bell\">♧</div><div><strong id=\"contador\">Tenés 3 notificaciones sin leer</strong><small>Revisá las novedades de tus historias y tu comunidad.</small></div></div>\n<h2 class=\"section-title\">Recientes</h2>\n<div class=\"list\" id=\"listaAvisos\">\n<article class=\"notice unread\"><div class=\"avatar\">🌙</div><div><p class=\"message\"><strong>Lunari</strong> comenzó a seguirte.</p><span class=\"time\">Hace 5 minutos</span><div class=\"notice-footer\"><button class=\"small-action mark-one\">Marcar como leída</button><button class=\"small-action like-comment\" onclick=\"this.dataset.liked=this.dataset.liked!=='true';this.textContent=this.dataset.liked==='true'?'♥ Te gusta':'♡ Me gusta'\">♡ Me gusta</button></div></div><span class=\"dot\"></span></article>\n<article class=\"notice unread\"><div class=\"avatar\">🌸</div><div><p class=\"message\"><strong>Dani P.</strong> comentó tu historia <strong>«El principio final»</strong>.</p><span class=\"time\">Hace 35 minutos</span><div class=\"notice-footer\"><button class=\"small-action mark-one\">Marcar como leída</button></div></div><span class=\"dot\"></span></article>\n<article class=\"notice unread\"><div class=\"avatar\">🦋</div><div><p class=\"message\"><strong>Kixhi</strong> publicó un nuevo capítulo de una historia que guardaste.</p><span class=\"time\">Hace 1 hora</span><div class=\"notice-footer\"><button class=\"small-action mark-one\">Marcar como leída</button></div></div><span class=\"dot\"></span></article>\n<article class=\"notice\"><div class=\"avatar\">📚</div><div><p class=\"message\"><strong>Tu universo te espera.</strong> Explorá historias nuevas y encontrá tu próxima lectura.</p><span class=\"time\">Ayer</span><div class=\"notice-footer\"><button class=\"small-action mark-one\">Marcar como no leída</button></div></div><span class=\"dot\"></span></article>\n</div>\n<p class=\"empty\" id=\"sinAvisos\">No hay notificaciones para mostrar.</p><p class=\"toast\" id=\"toast\" role=\"status\"></p>\n</main>\n</div>\n<nav aria-label=\"Navegación principal\">\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Inicio'},'*')\"><span class=\"ico\">⌂</span>Inicio</button>\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Explorar'},'*')\"><span class=\"ico\">⌕</span>Explorar</button>\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Crear'},'*')\"><span class=\"ico\">＋</span>Crear</button>\n<button class=\"active\" aria-current=\"page\"><span class=\"ico\">♧</span>Notificaciones</button>\n<button onclick=\"parent.postMessage({type:'vs-nav',section:'Perfil'},'*')\"><span class=\"ico\">♙</span>Perfil</button>\n</nav>\n<script>\nconst lista=document.getElementById(\"listaAvisos\");\nfunction actualizarContador(){\n const n=lista.querySelectorAll(\".notice.unread\").length;\n document.getElementById(\"contador\").textContent=n===0?\"Estás al día ✨\":`Tenés ${n} notificación${n===1?\"\":\"es\"} sin leer`;\n document.getElementById(\"sinAvisos\").style.display=lista.children.length?\"none\":\"block\";\n}\nfunction conectarBotonesIndividuales(){\n lista.querySelectorAll(\".notice\").forEach(aviso=>{\n  const boton=aviso.querySelector(\".mark-one\");\n  boton.onclick=()=>{\n   const leida=aviso.classList.contains(\"unread\");\n   aviso.classList.toggle(\"unread\",!leida);\n   boton.textContent=leida?\"Marcar como no leída\":\"Marcar como leída\";\n   actualizarContador();\n  };\n });\n}\ndocument.getElementById(\"marcarTodas\").addEventListener(\"click\",()=>{\n lista.querySelectorAll(\".notice\").forEach(aviso=>{\n  aviso.classList.remove(\"unread\");\n  aviso.querySelector(\".mark-one\").textContent=\"Marcar como no leída\";\n });\n actualizarContador();mostrarAviso(\"Todas las notificaciones quedaron marcadas como leídas.\");\n});\nfunction mostrarAviso(texto){\n const el=document.getElementById(\"toast\");el.textContent=texto;el.style.display=\"block\";\n}\nconectarBotonesIndividuales();actualizarContador();\n<\/script>\n</body>\n</html>",
+  perfil: "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>VS uniVerSo · Perfil</title>\n<style>\n:root{\n --lav:#eee7fb; --lav2:#dcd0f4; --pink:#f7dce8; --pink2:#efbfd5;\n --cream:#fff8e9; --gold:#cba64d; --ink:#5c4b70; --muted:#887b98;\n --white:#fffdfd; --line:#e8ddef; --green:#8baf9a;\n}\n*{box-sizing:border-box}\nbody{margin:0;min-height:100vh;font-family: \"Trebuchet MS\", Arial, sans-serif;color:var(--ink);\n background:radial-gradient(circle at 12% 8%,#fff9ed 0,transparent 30%),radial-gradient(circle at 88% 15%,#f8e1ed 0,transparent 32%),linear-gradient(135deg,#eee8fb,#f9e9f0 55%,#fff5e4);\n padding:20px 12px 100px}\nbutton,input,textarea,select{font:inherit}\nbutton{cursor:pointer}\n.topbar{max-width:920px;margin:0 auto 18px;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border:1px solid #e5d7ee;background:#fffaf5d9;border-radius:22px;box-shadow:0 5px 18px #8c6a9a12}\n.brand{font-size:22px;font-weight:800;letter-spacing:.2px;color:#b08b45}.brand .vs{color:#e69abb;text-shadow:0 0 12px #f2c9dc}.gear{border:1px solid var(--line);background:#fff;border-radius:50%;width:40px;height:40px;color:var(--ink);font-size:20px}\n.page{max-width:920px;margin:auto}\n.card{background:#fffdf9df;border:1px solid #e6d9ed;border-radius:26px;box-shadow:0 12px 28px #765c8a12}\n.profile{padding:25px 28px 20px;position:relative;overflow:hidden}\n.profile:before{content:\"✦  ✧       ✦       ✧\";position:absolute;right:20px;top:12px;color:#d7b66c;letter-spacing:13px;opacity:.75}\n.profile-main{display:flex;gap:22px;align-items:center;position:relative}\n.avatar{width:112px;height:112px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:47px;background:linear-gradient(145deg,#f7dce8,#dcd0f4 65%,#fff2d1);border:4px solid #fff8ef;box-shadow:0 0 0 2px #e8c4d8,0 6px 18px #b49bc6aa}\n.profile-info{flex:1;min-width:0}\n.username{font-size:26px;font-weight:800;margin:0 0 5px;overflow-wrap:anywhere}\n.handle{color:var(--muted);font-size:14px;margin-bottom:9px}\n.role{display:inline-block;border:1px solid #dfc782;color:#9c7930;background:#fff8df;padding:5px 13px;border-radius:99px;font-size:12px;font-weight:bold;letter-spacing:.3px;margin-bottom:10px}\n.bio{margin:0;line-height:1.5;font-size:14px}\n.stats{display:flex;gap:22px;margin-top:15px;flex-wrap:wrap}\n.stat{font-size:13px;color:var(--muted)}.stat strong{display:block;font-size:19px;color:var(--ink)}\n.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}\n.btn{border:1px solid #e4d5ed;background:#fff8fc;color:var(--ink);border-radius:99px;padding:10px 16px;font-weight:700;font-size:13px;transition:.2s}\n.btn:hover{transform:translateY(-1px);box-shadow:0 5px 12px #bda5c433}\n.btn.primary{background:linear-gradient(100deg,#f4d5e4,#e8ddfb);border-color:#e6cde5}\n.btn.gold{background:#fff4d5;border-color:#e6d19a;color:#8d6b27}\n.section{margin-top:18px;padding:20px}\n.tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:16px}\n.tab{border:0;background:transparent;padding:10px 16px;border-radius:99px;color:var(--muted);font-weight:700}\n.tab.active{background:linear-gradient(100deg,#f5d9e7,#e8defa);color:#695478;box-shadow:inset 0 0 0 1px #e8d6eb}\n.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}\n.section-head h2{font-size:18px;margin:0}\n.filters{display:flex;gap:7px;flex-wrap:wrap}\n.filter{padding:7px 12px;font-size:12px;border:1px solid var(--line);border-radius:99px;background:#fff;color:var(--muted)}\n.filter.active{background:#fff0c8;border-color:#e1c574;color:#8c6a22}\n.story-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}\n.story{border:1px solid #e8ddec;border-radius:20px;background:linear-gradient(145deg,#fffdfa,#fff5fb);padding:15px;display:flex;gap:13px;min-width:0;cursor:pointer;transition:.2s}\n.story:hover{transform:translateY(-2px);box-shadow:0 7px 17px #9875a41b}\n.cover{width:78px;height:108px;flex-shrink:0;border-radius:13px;display:grid;place-items:center;text-align:center;color:#fff;font-size:28px;box-shadow:inset 0 0 0 1px #ffffff70;position:relative;overflow:hidden}\n.cover:after{content:\"✦  ·  ✧\";position:absolute;bottom:8px;font-size:10px;letter-spacing:2px}\n.cover.purple{background:linear-gradient(150deg,#bba6dc,#71628e)}.cover.rose{background:linear-gradient(150deg,#f0b9ce,#a66d9a)}.cover.gold{background:linear-gradient(150deg,#e8d29a,#b18b4c)}.cover.blue{background:linear-gradient(150deg,#a8c9d8,#6d8ca9)}\n.story-content{min-width:0;flex:1}.story-title{font-size:15px;font-weight:800;margin:2px 0 6px}.story-desc{font-size:12px;line-height:1.45;color:var(--muted);margin:0 0 9px}\n.pill{display:inline-block;border-radius:99px;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:.2px;margin:2px 3px 0 0}\n.pill.published{background:#e4f1e9;color:#547c62}.pill.draft{background:#fff0cc;color:#947129}.pill.private{background:#eee7fb;color:#79618e}\n.meta{font-size:11px;color:#9a8ca5;margin-top:8px}\n.empty{padding:28px 14px;text-align:center;border:1px dashed #dacbe5;border-radius:18px;color:var(--muted);line-height:1.6}\n.posts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n.post,.review{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fffafc}\n.post p,.review p{font-size:13px;line-height:1.55;margin:8px 0;color:#726580}\n.post small,.review small{color:#9a8ca5}\n.stars{color:#c6a04a;letter-spacing:2px}\n.detail{display:none;margin-top:18px;padding:22px}\n.detail.open{display:block}\n.detail-head{display:flex;align-items:center;justify-content:space-between;gap:10px}\n.chapter-list{display:grid;gap:10px;margin-top:16px}\n.chapter{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border:1px solid var(--line);border-radius:15px;background:#fffafc}\n.chapter-title{font-weight:700;font-size:14px}.chapter small{display:block;color:var(--muted);margin-top:4px}\n.note{font-size:12px;color:#8b7d97;line-height:1.5;margin:12px 0 0}\n/* Pantalla completa de lectura: funciona como una vista independiente */\n.story-reading{display:none;position:fixed;inset:0;z-index:9999;overflow-y:auto;overscroll-behavior:contain;margin:0;padding:18px max(18px,calc((100vw - 760px)/2)) 30px;background:radial-gradient(ellipse at 15% 5%,#fff8ed 0,transparent 35%),radial-gradient(ellipse at 90% 15%,#f7dff0 0,transparent 40%),linear-gradient(145deg,#f1eaff,#fff4f6 58%,#fff8ed);border:0;border-radius:0;box-shadow:none;min-height:100vh}\n.story-reading.open{display:block}\n.reading-screen-top{display:flex;align-items:center;gap:12px;max-width:760px;margin:0 auto 18px;padding:4px 0 14px;border-bottom:1px solid #e1d3ed}\n.reading-back{border:1px solid #ddcce9;background:#fff9;border-radius:50%;width:42px;height:42px;font-size:25px;color:#7356a0;flex-shrink:0}\n.reading-brand{flex:1;text-align:center;font:clamp(22px,4vw,32px) Georgia,serif;color:#7353a0}\n.reading-more{border:1px solid #ddcce9;background:#fff9;border-radius:50%;width:42px;height:42px;font-size:20px;color:#7356a0;flex-shrink:0}\n.reading-book-head{max-width:760px;margin:auto;display:flex;gap:16px;align-items:center;padding:14px 16px 18px;border:1px solid #ded0eb;border-radius:20px;background:#fff9;box-shadow:0 5px 18px #8d73a310}\n.reading-cover{width:92px;height:118px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;color:#fff;font:26px Georgia,serif;text-align:center;background:radial-gradient(circle at 50% 20%,#fff4c9 0 4%,transparent 5%),linear-gradient(150deg,#7065a7,#d9a5d2 58%,#ffe4cf);box-shadow:0 3px 10px #8b6ca52a;overflow:hidden}\n.reading-book-title{font:24px Georgia,serif;color:#66508f;margin:0 0 8px;overflow-wrap:anywhere}\n.reading-author{color:#8977a7;font-size:14px;margin:0}\n.reading-paper{max-width:760px;margin:14px auto 0;padding:24px 22px;background:#fffaf5dc;border:1px solid #e6d9ed;border-radius:20px;box-shadow:0 5px 18px #8d73a30a}\n.reading-chapter-kicker{color:#9b83ad;font:14px Georgia,serif;margin:0 0 4px}\n.reading-chapter-title{font:30px Georgia,serif;color:#675091;margin:0 0 22px;overflow-wrap:anywhere}\n.reading-text{font:17px/1.9 Georgia,serif;color:#75658f;white-space:pre-wrap;overflow-wrap:anywhere;min-height:170px}\n.reading-actions{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid #e8d8ef}\n.reading-actions .btn{flex:1;min-width:0}\n.reading-actions .round{flex:0 0 46px;width:46px;height:46px;padding:0;border-radius:50%;font-size:19px}\n.chapter{cursor:pointer;transition:background .15s}.chapter:hover{background:#fff2fa}\n@media(max-width:650px){.story-reading{padding:12px 12px 24px}.reading-screen-top{margin-bottom:12px}.reading-book-title{font-size:20px}.reading-cover{width:82px;height:108px}.reading-paper{padding:18px 14px}.reading-text{font-size:16px;line-height:1.85}.reading-chapter-title{font-size:26px}.reading-actions{gap:5px}.reading-actions .btn{padding:9px 8px;font-size:12px}}\n.reading-more{display:grid;place-items:center}.reading-save.active{background:#fff0c8;color:#9b7420;border-color:#e1c574}.reading-bell.active{background:#e8defa;color:#6e5597;border-color:#cbb8e7}.reading-menu{position:fixed;z-index:10002;left:50%;bottom:90px;transform:translateX(-50%);width:min(340px,calc(100vw - 28px));padding:14px;border:1px solid #dfd0eb;border-radius:20px;background:#fffaf7f5;box-shadow:0 12px 35px #55406b35;display:grid;gap:8px;color:#675091}.reading-menu[hidden]{display:none}.reading-menu-head,.reading-menu-row{display:flex;align-items:center;justify-content:space-between;gap:8px}.reading-menu-head{padding:0 2px 6px;border-bottom:1px solid #e8d8ef}.reading-menu button{border:1px solid #e4d5ed;border-radius:12px;padding:10px;background:#fff;color:#675091;text-align:left}.reading-menu-close{font-size:20px!important;padding:2px 10px!important}.reading-menu-row button{padding:8px 12px}.reading-menu-row span{flex:1}.reading-night .reading-paper{background:#282438ef;border-color:#625574}.reading-night .reading-text,.reading-night .reading-chapter-title,.reading-night .reading-chapter-kicker{color:#e5d9f7}.reading-night .reading-book-title,.reading-night .reading-author{color:#e7d8fa}.reading-night{background:linear-gradient(145deg,#211d31,#30253b 58%,#3a2938)}.reading-mark{background:linear-gradient(transparent 62%,#f7e6a5 62%)!important;border-radius:2px}.reading-note-marker{display:inline-block;margin-left:3px;border:0;border-radius:50%;background:#f6dfaa;color:#70548e;width:20px;height:20px;text-align:center;cursor:pointer}.editor{display:none;margin-top:18px;padding:22px}.editor.open{display:block}\n.editor h2{margin:0 0 15px;font-size:19px}\n.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}\n.field{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted);font-weight:700}\n.field input,.field textarea,.field select{border:1px solid #dfd1e8;border-radius:12px;padding:11px 12px;background:#fffdfd;color:var(--ink);outline:none;width:100%}\n.field textarea{resize:vertical;min-height:75px}.field.full{grid-column:1/-1}\n.bottomnav{position:fixed;z-index:5;bottom:12px;left:50%;transform:translateX(-50%);width:min(660px,calc(100% - 24px));display:flex;justify-content:space-around;align-items:center;gap:3px;padding:9px 8px;border:1px solid #e4d6eb;background:#fffaf4ed;backdrop-filter:blur(14px);border-radius:24px;box-shadow:0 7px 24px #72547b26}\n.navitem{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 2px;border:0;background:transparent;color:#9886a5;border-radius:14px;font-size:10px;font-weight:700}\n.navitem .ico{font-size:20px;line-height:1.1}.navitem.active{background:linear-gradient(140deg,#f7dfeb,#e9e1fb);color:#6b567c}\n.toast{position:fixed;z-index:10;bottom:100px;left:50%;transform:translateX(-50%);background:#685477;color:white;padding:12px 17px;border-radius:14px;font-size:13px;box-shadow:0 8px 22px #503b5c40;display:none;max-width:calc(100% - 28px);text-align:center}\n@media(max-width:650px){\n body{padding:10px 9px 95px}.topbar{padding:10px 14px}.brand{font-size:19px}\n .profile{padding:22px 17px 18px}.profile-main{align-items:flex-start;gap:14px}.avatar{width:82px;height:82px;font-size:35px}\n .username{font-size:21px}.stats{gap:15px}.section{padding:15px}.story-grid,.posts{grid-template-columns:1fr}\n .story{padding:12px}.cover{width:68px;height:96px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}\n}\n</style>\n</head>\n<body>\n<header class=\"topbar\">\n  <div class=\"brand\"><span class=\"vs\">VS</span> uniVerSo <span style=\"font-size:13px;color:#c9ad70\">✦</span></div>\n  <button class=\"gear\" title=\"Configuración\" aria-label=\"Configuración\" onclick=\"toast('La configuración general se conectará más adelante ⚙️')\">⚙</button>\n</header>\n<main class=\"page\">\n  <section class=\"card profile\">\n    <div class=\"profile-main\">\n      <div class=\"avatar\" id=\"avatar\">🌙</div>\n      <div class=\"profile-info\">\n        <h1 class=\"username\" id=\"displayName\">Luna de papel</h1>\n        <div class=\"handle\" id=\"displayHandle\">@lunadepapel</div>\n        <div class=\"role\" id=\"displayRole\">✍️ ESCRITORA</div>\n        <p class=\"bio\" id=\"displayBio\">Escribo para liberar mi alma y encontrar magia en cada palabra. ✨</p>\n        <div class=\"stats\">\n          <div class=\"stat\"><strong id=\"storyCount\">4</strong> historias</div>\n          <div class=\"stat\"><strong id=\"followers\">128</strong> seguidores</div>\n          <div class=\"stat\"><strong id=\"following\">86</strong> seguidos</div>\n        </div>\n      </div>\n    </div>\n    <div class=\"actions\">\n      <button class=\"btn primary\" onclick=\"toggleEditor()\">✎ Editar perfil</button>\n      <button class=\"btn\" onclick=\"toast('La función para compartir el perfil se conectará más adelante ✨')\">↗ Compartir perfil</button>\n      <button class=\"btn gold\" onclick=\"showTab('historias');setFilter('borradores')\">✧ Mis borradores</button>\n    </div>\n  </section>\n\n  <section class=\"card section\" id=\"mainSection\">\n    <div class=\"tabs\" role=\"tablist\" aria-label=\"Secciones del perfil\">\n      <button class=\"tab active\" id=\"tab-historias\" onclick=\"showTab('historias')\">📚 Historias</button>\n      <button class=\"tab\" id=\"tab-publicaciones\" onclick=\"showTab('publicaciones')\">🌷 Publicaciones</button>\n      <button class=\"tab\" id=\"tab-momentos\" onclick=\"showTab('momentos')\">✦ Momentos</button>\n      <button class=\"tab\" id=\"tab-resenas\" onclick=\"showTab('resenas')\">⭐ Reseñas</button>\n    </div>\n    <div id=\"historiasPanel\">\n      <div class=\"section-head\">\n        <h2>Mi universo de historias</h2>\n        <div class=\"filters\">\n          <button class=\"filter active\" data-filter=\"todas\" onclick=\"setFilter('todas')\">Todas</button>\n          <button class=\"filter\" data-filter=\"publicadas\" onclick=\"setFilter('publicadas')\">Publicadas</button>\n          <button class=\"filter\" data-filter=\"borradores\" onclick=\"setFilter('borradores')\">Borradores</button>\n        </div>\n      </div>\n      <div class=\"story-grid\" id=\"storyGrid\">\n        <article class=\"story\" data-status=\"publicada\" onclick=\"openStory('final')\">\n          <div class=\"cover purple\">☾</div><div class=\"story-content\"><div class=\"story-title\">El principio de un final</div><p class=\"story-desc\">A veces, todo final esconde el comienzo de algo inesperado.</p><span class=\"pill published\">PUBLICADA</span><div class=\"meta\">♡ 245 · ◉ 1,2 mil lecturas</div></div>\n        </article>\n        <article class=\"story\" data-status=\"borrador\" onclick=\"openStory('jardin')\">\n          <div class=\"cover rose\">❀</div><div class=\"story-content\"><div class=\"story-title\">El jardín de las lunas</div><p class=\"story-desc\">Un secreto florece cada noche bajo la luna.</p><span class=\"pill draft\">BORRADOR</span><span class=\"pill private\">SOLO VOS</span><div class=\"meta\">2 capítulos guardados</div></div>\n        </article>\n        <article class=\"story\" data-status=\"publicada\" onclick=\"openStory('cartas')\">\n          <div class=\"cover gold\">✉</div><div class=\"story-content\"><div class=\"story-title\">Cartas que nunca envié</div><p class=\"story-desc\">Palabras que encontraron su lugar entre páginas.</p><span class=\"pill published\">PUBLICADA</span><div class=\"meta\">♡ 89 · ◉ 540 lecturas</div></div>\n        </article>\n        <article class=\"story\" data-status=\"borrador\" onclick=\"openStory('mar')\">\n          <div class=\"cover blue\">✧</div><div class=\"story-content\"><div class=\"story-title\">Donde duerme el mar</div><p class=\"story-desc\">Una historia en proceso, esperando su próximo capítulo.</p><span class=\"pill draft\">BORRADOR</span><span class=\"pill private\">SOLO VOS</span><div class=\"meta\">1 capítulo guardado</div></div>\n        </article>\n      </div>\n      <p class=\"note\">🔒 Tus borradores y capítulos sin publicar son privados: solo vos podés verlos. Al publicar una historia o un capítulo, quedará visible según la configuración de publicación.</p>\n    </div>\n    <div id=\"publicacionesPanel\" style=\"display:none\">\n      <div class=\"section-head\"><h2>Mis publicaciones</h2><button class=\"btn primary\" onclick=\"toast('El editor de publicaciones se conectará con Crear más adelante ✨')\">＋ Nueva publicación</button></div>\n      <div class=\"posts\">\n        <article class=\"post\"><small>Hace 2 días · 🌷 Publicación</small><p>“Hay universos enteros escondidos en las personas que se animan a contar su historia.” ✨</p><small>♡ 32 Me gusta · 8 comentarios</small></article>\n        <article class=\"post\"><small>Hace 1 semana · 📖 Fragmento</small><p>“La noche no era oscura; estaba llena de todas las estrellas que todavía no conocía.”</p><small>♡ 47 Me gusta · 12 comentarios</small></article>\n      </div>\n    </div>\n    <div id=\"momentosPanel\" style=\"display:none\"><div class=\"section-head\"><h2>Mis Momentos</h2></div><div id=\"perfilMomentosLista\" class=\"posts\"></div><div id=\"perfilMomentosVacio\" class=\"empty\">Todavía no compartiste Momentos. Cuando crees uno, aparecerá acá durante 24 horas.</div></div>\n    <div id=\"resenasPanel\" style=\"display:none\">\n      <div class=\"section-head\"><h2>Mis reseñas</h2></div>\n      <div class=\"posts\">\n        <article class=\"review\"><div class=\"stars\">★★★★★</div><strong>Un lugar para volver</strong><p>Una historia que te abraza y te deja pensando mucho después de terminarla.</p><small>Reseña de “Las cosas que callamos”</small></article>\n        <article class=\"review\"><div class=\"stars\">★★★★☆</div><strong>Entre estrellas</strong><p>Personajes hermosos y una trama que crece capítulo a capítulo.</p><small>Reseña de “Bajo el mismo cielo”</small></article>\n      </div>\n    </div>\n  </section>\n\n  <section class=\"card detail\" id=\"storyDetail\" aria-live=\"polite\">\n    <div class=\"detail-head\"><div><div style=\"font-size:11px;color:#9a8ca5;margin-bottom:5px\">MI HISTORIA</div><h2 id=\"detailTitle\" style=\"margin:0;font-size:20px\">Título de historia</h2></div><button class=\"btn\" onclick=\"closeStory()\">✕ Cerrar</button></div>\n    <p id=\"detailDesc\" class=\"note\"></p>\n    <div id=\"detailStatus\"></div>\n    <h3 style=\"font-size:15px;margin:20px 0 0\">Capítulos</h3>\n    <div class=\"chapter-list\" id=\"chapterList\"></div>\n    <p class=\"note\" id=\"detailNote\"></p>\n    <div class=\"actions\"><button class=\"btn primary\" onclick=\"toast('El editor de historias se conectará con Crear más adelante ✨')\">✎ Continuar escribiendo</button><button class=\"btn\" onclick=\"toast('La publicación de capítulos se conectará más adelante ✨')\">＋ Añadir capítulo</button></div>\n  </section>\n\n  <section class=\"story-reading\" id=\"chapterReader\" aria-live=\"polite\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Lectura del capítulo\">\n    <div class=\"reading-screen-top\"><button class=\"reading-back\" type=\"button\" onclick=\"backToStory()\" aria-label=\"Volver a la historia\">‹</button><div class=\"reading-brand\"><span style=\"color:#e5bf64\">V</span><span style=\"color:#e89fc8\">S</span> uniVerSo</div><button class=\"reading-more reading-save\" id=\"readingSaveButton\" type=\"button\" title=\"Guardar historia\" aria-label=\"Guardar historia\" onclick=\"toggleStorySaved()\">♡</button><button class=\"reading-more reading-bell\" id=\"readingBellButton\" type=\"button\" title=\"Activar notificaciones de esta historia\" aria-label=\"Activar notificaciones de esta historia\" onclick=\"toggleStoryNotifications()\">♧</button></div>\n    <div class=\"reading-book-head\">\n      <div class=\"reading-cover\" id=\"readingCover\">☾ ✧</div>\n      <div style=\"min-width:0;flex:1\"><h2 class=\"reading-book-title\" id=\"readingBookTitle\">Título de historia</h2><p class=\"reading-author\" id=\"readingAuthor\">✧ VS uniVerSo</p></div>\n    </div>\n    <div class=\"reading-paper\">\n      <p class=\"reading-chapter-kicker\" id=\"readingChapterNumber\">Capítulo 1</p>\n      <h3 class=\"reading-chapter-title\" id=\"readingChapterTitle\">Título del capítulo</h3>\n      <div class=\"reading-text\" id=\"readingChapterText\">El contenido del capítulo aparecerá acá.</div>\n      <div class=\"reading-actions\">\n        <button class=\"btn\" type=\"button\" onclick=\"changeChapter(-1)\">← Atrás</button>\n        <button class=\"btn round\" type=\"button\" title=\"Opciones de lectura\" aria-label=\"Opciones de lectura\" onclick=\"toggleReadingMenu()\">•••</button>\n        <button class=\"btn primary\" type=\"button\" onclick=\"changeChapter(1)\">Siguiente →</button>\n      </div>\n    </div>\n    <div class=\"reading-menu\" id=\"readingMenu\" hidden><div class=\"reading-menu-head\"><strong>Opciones de lectura</strong><button type=\"button\" class=\"reading-menu-close\" onclick=\"toggleReadingMenu(false)\" aria-label=\"Cerrar menú\">×</button></div><button type=\"button\" onclick=\"underlineSelection()\">✎ Subrayar texto seleccionado</button><button type=\"button\" onclick=\"addReadingNote()\">📝 Agregar una nota</button><div class=\"reading-menu-row\"><span>Tamaño de letra</span><button type=\"button\" onclick=\"changeReadingFont(-1)\">A−</button><button type=\"button\" onclick=\"changeReadingFont(1)\">A+</button></div><button type=\"button\" onclick=\"toggleReadingNight()\">☾ Activar/desactivar modo noche</button><button type=\"button\" onclick=\"clearReadingMarks()\">Borrar mis subrayados</button></div>\n    <div class=\"actions\"><button class=\"btn\" type=\"button\" onclick=\"backToStory()\">‹ Volver a la historia</button></div>\n  </section>\n\n  <section class=\"card editor\" id=\"profileEditor\">\n    <h2>✨ Editar mi perfil</h2>\n    <div class=\"form-grid\">\n      <label class=\"field\">Nombre visible<input id=\"editName\" maxlength=\"40\" value=\"Luna de papel\"></label>\n      <label class=\"field\">Nombre de usuario<input id=\"editHandle\" maxlength=\"25\" value=\"lunadepapel\"></label>\n      <label class=\"field\">Rol<select id=\"editRole\"><option value=\"Escritora\">Escritor/a</option><option value=\"Lectora\">Lector/a</option></select></label>\n      <label class=\"field\">Emoji de perfil<input id=\"editAvatar\" maxlength=\"4\" value=\"🌙\"></label>\n      <label class=\"field full\">Descripción<textarea id=\"editBio\" maxlength=\"180\">Escribo para liberar mi alma y encontrar magia en cada palabra. ✨</textarea></label>\n    </div>\n    <div class=\"actions\"><button class=\"btn primary\" onclick=\"saveProfile()\">Guardar cambios</button><button class=\"btn\" onclick=\"toggleEditor(false)\">Cancelar</button></div>\n    <p class=\"note\">Este prototipo guarda los cambios solo en esta vista. La cuenta real y el guardado permanente se conectarán más adelante.</p>\n  </section>\n</main>\n\n<nav class=\"bottomnav\" aria-label=\"Navegación principal\">\n  <button class=\"navitem\" onclick=\"navTo('Inicio')\"><span class=\"ico\">⌂</span>Inicio</button>\n  <button class=\"navitem\" onclick=\"navTo('Explorar')\"><span class=\"ico\">⌕</span>Explorar</button>\n  <button class=\"navitem\" onclick=\"navTo('Crear')\"><span class=\"ico\">✧</span>Crear</button>\n  <button class=\"navitem\" onclick=\"navTo('Notificaciones')\"><span class=\"ico\">♧</span>Notificaciones</button>\n  <button class=\"navitem active\" onclick=\"window.scrollTo({top:0,behavior:'smooth'})\"><span class=\"ico\">☻</span>Perfil</button>\n</nav>\n<div class=\"toast\" id=\"toast\" role=\"status\"></div>\n<script>\nconst stories = {\n final:{title:'El principio de un final',desc:'A veces, todo final esconde el comienzo de algo inesperado.',status:'publicada',chapters:[['1. El último día','Publicado · Visible para lectores'],['2. Una puerta entreabierta','Publicado · Visible para lectores'],['3. Lo que queda','Borrador · Solo vos podés verlo']],note:'Los capítulos en borrador son privados, incluso dentro de una historia publicada.'},\n jardin:{title:'El jardín de las lunas',desc:'Un secreto florece cada noche bajo la luna.',status:'borrador',chapters:[['1. La primera flor','Borrador · Solo vos podés verlo'],['2. Bajo la luz violeta','Borrador · Solo vos podés verlo']],note:'Esta historia todavía no está publicada. Solo vos podés verla.'},\n cartas:{title:'Cartas que nunca envié',desc:'Palabras que encontraron su lugar entre páginas.',status:'publicada',chapters:[['1. Querida desconocida','Publicado · Visible para lectores'],['2. Tinta y memoria','Publicado · Visible para lectores']],note:'Podés guardar nuevos capítulos como borrador antes de publicarlos.'},\n mar:{title:'Donde duerme el mar',desc:'Una historia en proceso, esperando su próximo capítulo.',status:'borrador',chapters:[['1. La orilla','Borrador · Solo vos podés verlo']],note:'Esta historia todavía no está publicada. Solo vos podés verla.'}\n};\nlet currentFilter='todas';\nlet historiaEnLectura=null;\nlet indiceCapituloLectura=0;\nfunction toast(message){const el=document.getElementById('toast');el.textContent=message;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2600)}\nfunction showTab(tab){\n ['historias','publicaciones','momentos','resenas'].forEach(name=>{\n  document.getElementById(name+'Panel').style.display=name===tab?'block':'none';\n  document.getElementById('tab-'+name).classList.toggle('active',name===tab);\n });\n closeStory();\n}\nfunction crearTarjetaHistoria(h,id,estado){\n const contenedor=document.getElementById('storyGrid');\n stories[id]={title:h.titulo||'Historia sin título',desc:h.sinopsis||'',status:estado,chapters:[[(estado==='borrador'?'Borrador · ':'Publicado · ')+(h.tituloCapitulo||'Primer capítulo'),estado==='borrador'?'Solo vos podés verlo':'Guardado en este dispositivo']],note:estado==='borrador'?'Este borrador es privado. Podés volver a Elaborar historia para continuar escribiéndolo.':'Esta historia está guardada en este prototipo en este dispositivo. Todavía no es visible para otros usuarios.',datosBorrador:h};\n const card=document.createElement('article');card.className='story';card.dataset.status=estado;card.dataset.dynamicId=id;card.onclick=()=>openStory(id);\n const cover=document.createElement('div');cover.className='cover '+(estado==='borrador'?'gold':'rose');if(h.portada){cover.style.backgroundImage='url('+h.portada+')';cover.style.backgroundSize='cover';cover.style.backgroundPosition='center';cover.textContent=''}else cover.textContent=estado==='borrador'?'✎':'✧';\n const content=document.createElement('div');content.className='story-content';\n const title=document.createElement('h3');title.className='story-title';title.textContent=h.titulo||'Historia sin título';\n const desc=document.createElement('p');desc.className='story-desc';desc.textContent=h.sinopsis||'Todavía no agregaste una sinopsis.';\n const tags=document.createElement('div');const estadoPill=document.createElement('span');estadoPill.className='pill '+(estado==='borrador'?'draft':'published');estadoPill.textContent=estado==='borrador'?'BORRADOR':'PUBLICADA';tags.appendChild(estadoPill);\n (h.generos||[]).slice(0,2).forEach(g=>{const t=document.createElement('span');t.className='pill private';t.textContent=g;tags.appendChild(t)});\n content.append(title,desc,tags);card.append(cover,content);contenedor.appendChild(card);\n}\nfunction cargarHistoriasPublicadas(){\n const contenedor=document.getElementById('storyGrid');if(!contenedor)return;\n contenedor.querySelectorAll('[data-dynamic-id]').forEach(el=>el.remove());\n Object.keys(stories).filter(id=>id.startsWith('guardada-')||id.startsWith('borrador-')).forEach(id=>delete stories[id]);\n let lista=[];try{lista=JSON.parse(localStorage.getItem('vsUniversoHistoriasPublicadas')||'[]')}catch(e){}\n lista.forEach((h,i)=>crearTarjetaHistoria(h,'guardada-'+(h.id||i),'publicada'));\n let borrador=null;try{borrador=JSON.parse(localStorage.getItem('vsUniversoBorradorHistoria')||'null')}catch(e){}\n if(borrador && (borrador.titulo||borrador.sinopsis||borrador.tituloCapitulo||borrador.contenidoCapitulo)) crearTarjetaHistoria(borrador,'borrador-actual','borrador');\n document.getElementById('storyCount').textContent=String(4+lista.length);\n setFilter(currentFilter);\n}\nfunction setFilter(filter){\n currentFilter=filter;\n document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));\n let visible=0;\n document.querySelectorAll('.story').forEach(card=>{\n  const show=filter==='todas'||(filter==='publicadas'&&card.dataset.status==='publicada')||(filter==='borradores'&&card.dataset.status==='borrador');\n  card.style.display=show?'flex':'none';if(show)visible++;\n });\n let empty=document.getElementById('storyEmpty');\n if(!empty){empty=document.createElement('div');empty.id='storyEmpty';empty.className='empty';empty.style.display='none';empty.innerHTML='Todavía no hay historias en esta categoría.<br>Cuando guardes una historia, la vas a encontrar acá.';document.getElementById('storyGrid').after(empty)}\n empty.style.display=visible?'none':'block';\n}\nfunction openStory(id){\n const s=stories[id];if(!s)return;\n document.getElementById('detailTitle').textContent=s.title;\n document.getElementById('detailDesc').textContent=s.desc;\n document.getElementById('detailStatus').innerHTML=s.status==='publicada'?'<span class=\"pill published\">PUBLICADA</span>':'<span class=\"pill draft\">BORRADOR</span> <span class=\"pill private\">SOLO VOS</span>';\n document.getElementById('chapterList').innerHTML='';\n s.chapters.forEach(ch=>{\n  const row=document.createElement('div');row.className='chapter';\n  const left=document.createElement('div');const title=document.createElement('div');title.className='chapter-title';title.textContent=ch[0];\n  const sub=document.createElement('small');sub.textContent=ch[1];left.append(title,sub);\n  const badge=document.createElement('span');badge.className='pill '+(ch[1].startsWith('Publicado')?'published':'draft');badge.textContent=ch[1].startsWith('Publicado')?'PUBLICADO':'BORRADOR';\n  row.append(left,badge);row.setAttribute('role','button');row.tabIndex=0;row.setAttribute('aria-label','Leer '+ch[0]);row.onclick=()=>openChapter(s,ch,Array.from(s.chapters).indexOf(ch));row.onkeydown=(ev)=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openChapter(s,ch,Array.from(s.chapters).indexOf(ch));}};document.getElementById('chapterList').append(row);\n });\n document.getElementById('detailNote').textContent=s.note;\n let continuar=document.getElementById('continuarBorrador');if(continuar)continuar.remove();\n if(s.status==='borrador'){continuar=document.createElement('button');continuar.id='continuarBorrador';continuar.className='btn primary';continuar.textContent='✎ Continuar escribiendo';continuar.onclick=function(ev){ev.stopPropagation();parent.postMessage({type:'vs-nav',section:'Crear',accion:'continuar-borrador'},'*');};document.getElementById('detailNote').after(continuar);}\n document.getElementById('storyDetail').classList.add('open');\n document.getElementById('storyDetail').scrollIntoView({behavior:'smooth',block:'start'});\n}\nfunction openChapter(story,chapter,index){\n if(!story||!chapter)return;\n historiaEnLectura=story;indiceCapituloLectura=typeof index==='number'?index:0;\n const reader=document.getElementById('chapterReader');\n document.getElementById('readingBookTitle').textContent=story.title||'Historia sin título';\n document.getElementById('readingAuthor').textContent='✧ Lectura en VS uniVerSo';\n const cover=document.getElementById('readingCover');cover.textContent='☾ ✧';\n if(story.datosBorrador&&story.datosBorrador.portada){cover.style.backgroundImage='url('+story.datosBorrador.portada+')';cover.style.backgroundSize='cover';cover.style.backgroundPosition='center';cover.textContent=''}else{cover.style.backgroundImage='';}\n document.getElementById('storyDetail').classList.remove('open');\n mostrarContenidoCapitulo();\n reader.classList.add('open');reader.scrollTop=0;document.body.style.overflow='hidden';\n}\nfunction mostrarContenidoCapitulo(){\n if(!historiaEnLectura)return;\n const lista=historiaEnLectura.chapters||[];if(!lista.length)return;\n const i=Math.max(0,Math.min(indiceCapituloLectura,lista.length-1));indiceCapituloLectura=i;\n const ch=lista[i];const titulo=String(ch[0]||('Capítulo '+(i+1)));\n document.getElementById('readingChapterNumber').textContent='Capítulo '+(i+1);\n document.getElementById('readingChapterTitle').textContent=titulo.replace(/^\\d+\\.\\s*/, '').replace(/^Capítulo\\s+\\d+\\s*[—–:-]?\\s*/i,'')||('Capítulo '+(i+1));\n let contenido='';\n if(ch.length>2&&typeof ch[2]==='string')contenido=ch[2];\n if(!contenido&&historiaEnLectura.datosBorrador){const d=historiaEnLectura.datosBorrador;contenido=d.contenidoCapitulo||d.textoCapitulo||d.contenido||'';}\n if(!contenido)contenido='El texto de este capítulo todavía no está disponible en el prototipo. Cuando el capítulo tenga su contenido guardado, aparecerá acá. ✨';\n document.getElementById('readingChapterText').textContent=contenido;restoreReadingMarks();refreshStoryReadingButtons();\n const botones=document.querySelectorAll('#chapterReader .reading-actions button');\n if(botones.length>=3){botones[0].disabled=i===0;botones[2].disabled=i===lista.length-1;botones[0].style.opacity=i===0?'.45':'1';botones[2].style.opacity=i===lista.length-1?'.45':'1';}\n}\nfunction changeChapter(delta){\n if(!historiaEnLectura)return;\n const next=indiceCapituloLectura+delta;\n if(next<0){toast('Estás en el primer capítulo ✨');return}\n if(next>historiaEnLectura.chapters.length-1){toast('Llegaste al último capítulo disponible ✨');return}\n indiceCapituloLectura=next;mostrarContenidoCapitulo();document.getElementById('chapterReader').scrollTop=0;\n}\nlet readingFontSize=17;\nfunction readingKey(){return (historiaEnLectura?.title||'historia')+'::'+indiceCapituloLectura}\nfunction savedStoryState(key){try{return JSON.parse(localStorage.getItem('vs-reading-state-'+key)||'{}')}catch(e){return {}}}\nfunction storeStoryState(key,state){try{localStorage.setItem('vs-reading-state-'+key,JSON.stringify(state))}catch(e){toast('No se pudo guardar en este navegador ✨')}}\nfunction refreshStoryReadingButtons(){if(!historiaEnLectura)return;const key='story-'+(historiaEnLectura.title||'historia');const saved=savedStoryState(key);const b=document.getElementById('readingSaveButton'),n=document.getElementById('readingBellButton');if(b){b.classList.toggle('active',!!saved.saved);b.textContent=saved.saved?'♥':'♡';b.title=saved.saved?'Quitar de guardadas':'Guardar historia'}if(n){n.classList.toggle('active',!!saved.notifications);n.textContent=saved.notifications?'🔔':'♧';n.title=saved.notifications?'Desactivar notificaciones':'Activar notificaciones'}}\nfunction toggleStorySaved(){if(!historiaEnLectura)return;const key='story-'+(historiaEnLectura.title||'historia');const state=savedStoryState(key);state.saved=!state.saved;storeStoryState(key,state);refreshStoryReadingButtons();toast(state.saved?'Historia guardada en tu lista 💗':'Historia quitada de guardadas')}\nfunction toggleStoryNotifications(){if(!historiaEnLectura)return;const key='story-'+(historiaEnLectura.title||'historia');const state=savedStoryState(key);state.notifications=!state.notifications;storeStoryState(key,state);refreshStoryReadingButtons();toast(state.notifications?'Notificaciones de esta historia activadas 🔔':'Notificaciones desactivadas')}\nfunction toggleReadingMenu(force){const m=document.getElementById('readingMenu');if(!m)return;const show=force===undefined?m.hidden:!!force;m.hidden=!show}\nfunction underlineSelection(){const area=document.getElementById('readingChapterText'),sel=window.getSelection();if(!sel||sel.rangeCount===0||sel.isCollapsed||!area.contains(sel.anchorNode)||!area.contains(sel.focusNode)){toast('Primero seleccioná con el mouse el texto que querés subrayar ✨');return}const range=sel.getRangeAt(0);const span=document.createElement('span');span.className='reading-mark';try{range.surroundContents(span)}catch(e){const fragment=range.extractContents();span.appendChild(fragment);range.insertNode(span)}sel.removeAllRanges();saveReadingMarks();toggleReadingMenu(false);toast('Subrayado agregado 💛')}\nfunction saveReadingMarks(){if(!historiaEnLectura)return;const area=document.getElementById('readingChapterText');try{localStorage.setItem('vs-reading-state-marks-'+readingKey(),area.innerHTML)}catch(e){}}\nfunction restoreReadingMarks(){if(!historiaEnLectura)return;const area=document.getElementById('readingChapterText');try{const html=localStorage.getItem('vs-reading-state-marks-'+readingKey());if(html)area.innerHTML=html}catch(e){}}\nfunction addReadingNote(){const note=prompt('Escribí una nota privada para este capítulo:');if(note&&note.trim()){const key='vs-reading-notes-'+readingKey();try{const old=JSON.parse(localStorage.getItem(key)||'[]');old.push(note.trim());localStorage.setItem(key,JSON.stringify(old))}catch(e){}toggleReadingMenu(false);toast('Nota privada guardada en este dispositivo 📝')}}\nfunction changeReadingFont(delta){readingFontSize=Math.max(13,Math.min(25,readingFontSize+delta));document.getElementById('readingChapterText').style.fontSize=readingFontSize+'px';toggleReadingMenu(false)}\nfunction toggleReadingNight(){document.getElementById('chapterReader').classList.toggle('reading-night');toggleReadingMenu(false)}\nfunction clearReadingMarks(){const area=document.getElementById('readingChapterText');area.querySelectorAll('.reading-mark').forEach(span=>{span.replaceWith(...span.childNodes)});saveReadingMarks();toggleReadingMenu(false);toast('Subrayados borrados de este capítulo')}\nfunction backToStory(){document.getElementById('chapterReader').classList.remove('open');document.body.style.overflow='';document.getElementById('storyDetail').classList.add('open');document.getElementById('storyDetail').scrollIntoView({behavior:'smooth',block:'start'})}\nfunction closeStory(){document.getElementById('storyDetail').classList.remove('open');document.getElementById('chapterReader').classList.remove('open');document.body.style.overflow=''}\nfunction toggleEditor(force){\n const el=document.getElementById('profileEditor');const open=force===undefined?!el.classList.contains('open'):force;\n el.classList.toggle('open',open);\n if(open){document.getElementById('editName').value=document.getElementById('displayName').textContent;document.getElementById('editHandle').value=document.getElementById('displayHandle').textContent.replace(/^@/,'');document.getElementById('editRole').value=document.getElementById('displayRole').textContent.includes('LECTOR')?'Lectora':'Escritora';document.getElementById('editAvatar').value=document.getElementById('avatar').textContent;document.getElementById('editBio').value=document.getElementById('displayBio').textContent;el.scrollIntoView({behavior:'smooth',block:'center'})}\n}\nfunction saveProfile(){\n const name=document.getElementById('editName').value.trim(),handle=document.getElementById('editHandle').value.trim().replace(/^@/,'');\n if(!name||!handle){toast('Completá el nombre y el usuario para guardar 💗');return}\n document.getElementById('displayName').textContent=name;\n document.getElementById('displayHandle').textContent='@'+handle.replace(/\\s+/g,'');\n document.getElementById('displayRole').textContent=(document.getElementById('editRole').value==='Lectora'?'📖 LECTORA':'✍️ ESCRITORA');\n document.getElementById('avatar').textContent=document.getElementById('editAvatar').value.trim()||'🌙';\n document.getElementById('displayBio').textContent=document.getElementById('editBio').value.trim();\n toggleEditor(false);toast('¡Perfil actualizado en esta vista! ✨');\n}\nfunction renderizarContenidoPerfilVS(datos){\n const panel=document.getElementById('publicacionesPanel');\n if(panel){let lista=document.getElementById('publicacionesUsuarioPerfil');if(!lista){lista=document.createElement('div');lista.id='publicacionesUsuarioPerfil';lista.className='posts';panel.appendChild(lista)}\n lista.innerHTML='';const posts=(datos.publicaciones||[]).filter(p=>p.audiencia!=='Solo yo');\n posts.forEach(p=>{const card=document.createElement('article');card.className='post';const meta=document.createElement('small');meta.textContent=(p.autor||'Tu usuario')+' \u00b7 '+(p.audiencia||'P\u00fablico');card.append(meta);if(p.texto){const t=document.createElement('p');t.textContent=p.texto;card.append(t)}if(p.tipo==='fragmento'){const t=document.createElement('p');t.textContent='\ud83d\udcd6 '+(p.historia||'Historia')+(p.capitulo?' \u00b7 '+p.capitulo:'');card.append(t)}if(p.archivo&&p.tipo==='imagen'){const im=document.createElement('img');im.src=p.archivo;im.alt='Imagen de la publicaci\u00f3n';im.style.cssText='width:100%;max-height:260px;object-fit:contain;border-radius:12px';card.append(im)}if(p.archivo&&p.tipo==='video'){const v=document.createElement('video');v.src=p.archivo;v.controls=true;v.style.cssText='width:100%;max-height:260px;border-radius:12px';card.append(v)}lista.append(card)});\n if(!posts.length){const e=document.createElement('div');e.className='empty';e.textContent='Todav\u00eda no publicaste nada. Tus publicaciones aparecer\u00e1n ac\u00e1.';lista.append(e)}}\n const listaM=document.getElementById('perfilMomentosLista'),vacio=document.getElementById('perfilMomentosVacio');if(listaM){listaM.innerHTML='';const ms=(datos.momentos||[]).filter(m=>Date.now()-new Date(m.fecha).getTime()<86400000);ms.forEach(m=>{const c=document.createElement('article');c.className='post';const meta=document.createElement('small');meta.textContent=(m.autor||'Tu usuario')+' \u00b7 Momento';c.append(meta);if(m.texto){const t=document.createElement('p');t.textContent=m.texto;c.append(t)}if(m.archivo){if((m.tipo||'').startsWith('video/')){const v=document.createElement('video');v.src=m.archivo;v.controls=true;v.style.cssText='width:100%;max-height:260px;border-radius:12px';c.append(v)}else{const im=document.createElement('img');im.src=m.archivo;im.alt='Imagen del Momento';im.style.cssText='width:100%;max-height:260px;object-fit:contain;border-radius:12px';c.append(im)}}listaM.append(c)});if(vacio)vacio.style.display=listaM.children.length?'none':'block'}}\nwindow.addEventListener('message',function(e){if(e.data&&e.data.type==='vs-profile-content')renderizarContenidoPerfilVS(e.data.datos||{})});\nwindow.addEventListener('message',function(e){if(e.data&&e.data.type==='vs-recargar-historias')cargarHistoriasPublicadas()});\nfunction navTo(name){parent.postMessage({type:'vs-nav',section:name},'*')}\nwindow.addEventListener('load',cargarHistoriasPublicadas);\nwindow.addEventListener('message',function(event){if(!event.data||event.data.type!=='vs-profile-data')return;const d=event.data;if(d.username){document.getElementById('displayName').textContent=d.username;document.getElementById('displayHandle').textContent='@'+d.username.toLowerCase().replace(/[^a-z0-9_]/g,'')}if(d.role){document.getElementById('displayRole').textContent=d.role==='Escritor'?'✍️ ESCRITORA':'📖 LECTORA'}});\n<\/script>\n</body>\n</html>"
+};
+Object.keys(documentosOriginales).forEach(function(seccion){
+  const marco=document.getElementById('marco-'+seccion);
+  if(marco){marco.srcdoc=documentosOriginales[seccion];if(seccion==='perfil')marco.addEventListener('load',function(){sincronizarDatosPerfil();sincronizarContenidoPerfilVS();});}
+});
+window.addEventListener('message',function(evento){
+  const dato=evento.data;
+  if(!dato||dato.type!=='vs-nav') return;
+  if(dato.section==='Inicio'){irAlInicio();return;}
+  if(dato.section==='Crear' && dato.accion==='continuar-borrador'){continuarBorradorHistoria();return;}
+  if(dato.section==='Crear'){mostrarCrear();return;}
+  if(['Explorar','Notificaciones','Perfil'].includes(dato.section)){abrirSeccionInicio(dato.section);return;}
+});
+function sincronizarDatosPerfil(){
+  const marco=document.getElementById('marco-perfil');
+  if(!marco||!marco.contentWindow)return;
+  marco.contentWindow.postMessage({type:'vs-profile-data',username:usuarioRegistrado||'Tu usuario',role:rolSeleccionado||'Lector'},'*');
+}
+
+</script>
+
+
+<style>
+#vsModalMomento{position:fixed;inset:0;z-index:99999;background:#3f315a88;display:none;align-items:center;justify-content:center;padding:16px}#vsModalMomento .caja{width:min(480px,100%);max-height:90vh;overflow:auto;background:#fffaf8;border:1px solid #e5d1eb;border-radius:22px;padding:22px;box-shadow:0 18px 55px #34214455;color:#5c4b70}#vsModalMomento h2{margin:0 0 8px;color:#7353a0}#vsModalMomento label{display:block;margin:12px 0 6px;font-size:13px;font-weight:bold}#vsModalMomento textarea,#vsModalMomento input{width:100%;box-sizing:border-box;border:1px solid #dfcfe8;border-radius:12px;padding:11px;background:#fff;font:inherit}#vsModalMomento textarea{min-height:100px;resize:vertical}#vsModalMomento .acciones{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}#vsModalMomento button{border:1px solid #e0cde9;border-radius:20px;padding:10px 15px;background:#f6e5f1;color:#5c4b70;cursor:pointer}
+</style>
+<div id="vsModalMomento" role="dialog" aria-modal="true" aria-label="Crear Momento"><div class="caja"><h2>✦ Crear Momento</h2><p style="font-size:13px;color:#887b98">Compartí algo especial. Este Momento se guardará en este dispositivo durante 24 horas.</p><form id="vsFormularioMomento"><label for="vsTextoMomento">¿Qué querés compartir?</label><textarea id="vsTextoMomento" maxlength="1200" placeholder="Escribí tu Momento..."></textarea><label for="vsArchivoMomento">Agregar imagen o video (opcional)</label><input id="vsArchivoMomento" type="file" accept="image/*,video/*"><div class="acciones"><button type="button" onclick="cerrarCrearMomento()">Cancelar</button><button type="submit">Publicar Momento ✨</button></div></form></div></div>
+
+<style>
+#vsVerMomento{position:fixed;inset:0;z-index:100000;display:none;align-items:center;justify-content:center;padding:14px;background:radial-gradient(circle at 15% 10%,#fff6e9 0,transparent 30%),radial-gradient(circle at 90% 15%,#f5d9ee 0,transparent 36%),linear-gradient(145deg,#e9e0fb,#fff0f6 60%,#fff5e3)}
+#vsVerMomento.abierto{display:flex}
+#vsVerMomento .vs-momento-marco{position:relative;width:min(520px,100%);min-height:min(700px,92vh);max-height:92vh;overflow:auto;border:1px solid #e1d0ee;border-radius:27px;background:#fffaf8ed;box-shadow:0 18px 55px #34214430;padding:18px;display:flex;flex-direction:column}
+#vsVerMomento .vs-momento-progreso{height:4px;border-radius:9px;background:#e9dff0;overflow:hidden;margin-bottom:15px}
+#vsVerMomento .vs-momento-progreso span{display:block;height:100%;width:100%;background:linear-gradient(90deg,#d7b8e9,#efb3d1,#e5cb85)}
+#vsVerMomento .vs-momento-cabecera{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+#vsVerMomento .vs-momento-avatar{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#c7b6ef,#f0b9d8,#ffe7b8);color:white;font-size:23px;border:2px solid white;box-shadow:0 0 0 1px #d9c6e8}
+#vsVerMomento .vs-momento-autor{font-weight:800;color:#65527d}
+#vsVerMomento .vs-momento-tiempo{font-size:12px;color:#9585a7;margin-top:3px}
+#vsVerMomento .vs-momento-cerrar{margin-left:auto;width:38px;height:38px;border:1px solid #e1d1ed;border-radius:50%;background:#fff8fc;color:#7353a0;font-size:22px;cursor:pointer}
+#vsVerMomento #vsContenidoMomento{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px}
+#vsVerMomento .vs-momento-texto{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65;font-size:clamp(17px,3.8vw,21px);text-align:center;color:#665578;padding:20px 8px}
+#vsVerMomento .vs-momento-media{display:block;width:100%;max-height:58vh;object-fit:contain;border-radius:18px;background:#f2eaf6}
+#vsVerMomento .vs-momento-pie{font-size:12px;text-align:center;color:#9989a8;padding-top:12px;border-top:1px solid #eee3f1;margin-top:14px}
+@media(max-width:520px){#vsVerMomento{padding:0}#vsVerMomento .vs-momento-marco{width:100%;height:100%;max-height:100%;border-radius:0;border:0;padding:17px 15px calc(18px + env(safe-area-inset-bottom))}}
+</style>
+<div id="vsVerMomento" role="dialog" aria-modal="true" aria-label="Ver Momento" onclick="if(event.target===this)cerrarVerMiMomentoVS()">
+  <div class="vs-momento-marco">
+    <div class="vs-momento-progreso"><span></span></div>
+    <div class="vs-momento-cabecera"><span class="vs-momento-avatar" id="vsAvatarMomento">☁</span><div><div class="vs-momento-autor" id="vsAutorMomento">Mi momento</div><div class="vs-momento-tiempo" id="vsTiempoMomento">Disponible durante 24 horas</div></div><button class="vs-momento-cerrar" type="button" onclick="cerrarVerMiMomentoVS()" aria-label="Cerrar Momento">×</button></div>
+    <div id="vsContenidoMomento"></div>
+    <div class="vs-momento-pie">☁ Un pequeño instante de su universo</div>
+  </div>
+</div>
+<script>
+function obtenerMomentosVS(){try{return JSON.parse(localStorage.getItem('vsUniversoMomentos')||'[]')}catch(e){return []}}
+function sincronizarContenidoPerfilVS(){const f=document.getElementById('marco-perfil');if(f&&f.contentWindow)f.contentWindow.postMessage({type:'vs-profile-content',datos:{publicaciones:obtenerPublicacionesGuardadas(),momentos:obtenerMomentosVS()}},'*')}
+function mostrarCrearMomento(){const m=document.getElementById('vsModalMomento');if(!m)return;document.getElementById('vsFormularioMomento').reset();m.style.display='flex'}
+function cerrarCrearMomento(){const m=document.getElementById('vsModalMomento');if(m)m.style.display='none'}
+function renderizarMomentosInicioVS(){
+  const boton=document.getElementById('botonMiMomentoVS');
+  const icono=document.getElementById('iconoMiMomentoVS');
+  const nombre=document.getElementById('nombreMiMomentoVS');
+  if(!boton||!icono||!nombre)return;
+  const ahora=Date.now();
+  const activos=obtenerMomentosVS().filter(m=>m.fecha && ahora-new Date(m.fecha).getTime()<86400000 && ahora-new Date(m.fecha).getTime()>=0);
+  const propio=activos.find(m=>(m.autor||'Tu usuario')===(usuarioRegistrado||'Tu usuario'));
+  boton.classList.toggle('mi-momento-activo',!!propio);
+  if(propio){
+    icono.textContent=propio.archivo ? ((propio.tipo||'').startsWith('video/')?'▶':'✦') : '☁';
+    nombre.innerHTML='Mi<br>momento';
+    boton.title='Ver mi Momento';
+    boton.onclick=abrirMiMomentoVS;
+  }else{
+    icono.textContent='☁';
+    nombre.innerHTML='Mi<br>momento';
+    boton.title='Crear mi Momento';
+    boton.onclick=mostrarCrearMomento;
+  }
+}
+function mostrarMomentoEnVistaVS(momento, autor, avatar){
+  const modal=document.getElementById('vsVerMomento');
+  const contenido=document.getElementById('vsContenidoMomento');
+  const nombre=document.getElementById('vsAutorMomento');
+  const tiempo=document.getElementById('vsTiempoMomento');
+  const icono=document.getElementById('vsAvatarMomento');
+  if(!modal||!contenido)return;
+  contenido.innerHTML='';
+  nombre.textContent=autor||momento.autor||'Mi momento';
+  icono.textContent=avatar||'☁';
+  const transcurrido=Math.max(0,Date.now()-new Date(momento.fecha||Date.now()).getTime());
+  const horas=Math.floor(transcurrido/3600000);
+  tiempo.textContent=horas<1?'Hace unos minutos · desaparece a las 24 h':'Hace '+horas+' h · desaparece a las 24 h';
+  if(momento.texto){const p=document.createElement('p');p.className='vs-momento-texto';p.textContent=momento.texto;contenido.appendChild(p)}
+  if(momento.archivo){
+    if((momento.tipo||'').startsWith('video/')){const v=document.createElement('video');v.src=momento.archivo;v.controls=true;v.autoplay=false;v.className='vs-momento-media';v.setAttribute('aria-label','Video del Momento');contenido.appendChild(v)}
+    else{const img=document.createElement('img');img.src=momento.archivo;img.alt='Imagen del Momento de '+(autor||momento.autor||'usuario');img.className='vs-momento-media';contenido.appendChild(img)}
+  }
+  if(!momento.texto&&!momento.archivo){const p=document.createElement('p');p.className='vs-momento-texto';p.textContent='Este Momento está listo para compartir un pequeño instante. ☁';contenido.appendChild(p)}
+  modal.classList.add('abierto');modal.style.display='flex';document.body.style.overflow='hidden';
+}
+function abrirMiMomentoVS(){
+  const ahora=Date.now();
+  const propios=obtenerMomentosVS().filter(m=>m.fecha&&ahora-new Date(m.fecha).getTime()<86400000&&ahora-new Date(m.fecha).getTime()>=0&&(m.autor||'Tu usuario')===(usuarioRegistrado||'Tu usuario'));
+  if(!propios.length){mostrarCrearMomento();return;}
+  mostrarMomentoEnVistaVS(propios[0], 'Mi momento', '☁');
+}
+function verMomentoAutorVS(autor){
+  const ahora=Date.now();
+  const encontrado=obtenerMomentosVS().find(m=>m.fecha&&ahora-new Date(m.fecha).getTime()<86400000&&ahora-new Date(m.fecha).getTime()>=0&&(m.autor||'')===autor);
+  if(encontrado){mostrarMomentoEnVistaVS(encontrado,autor,'☁');return;}
+  const ejemplos={
+    'Lunari':{texto:'A veces, el cielo también guarda las palabras que todavía no sabemos decir. ☾✨',tipo:'',fecha:new Date(Date.now()-2*3600000).toISOString()},
+    'Neko':{texto:'Hoy me tomé un ratito para imaginar nuevos mundos. 🌙',tipo:'',fecha:new Date(Date.now()-4*3600000).toISOString()},
+    'Dani P.':{texto:'Que nunca nos falten pequeñas cosas que nos devuelvan la ilusión. ✧',tipo:'',fecha:new Date(Date.now()-6*3600000).toISOString()},
+    'Kixhi':{texto:'Un pensamiento perdido entre estrellas, por si alguien necesitaba leerlo. ☁',tipo:'',fecha:new Date(Date.now()-8*3600000).toISOString()}
+  };
+  const demo=ejemplos[autor]||{texto:'Este Momento todavía no tiene contenido para mostrar.',tipo:'',fecha:new Date().toISOString()};
+  mostrarMomentoEnVistaVS(demo,autor,'☁');
+}
+function cerrarVerMiMomentoVS(){const m=document.getElementById('vsVerMomento');if(m){m.classList.remove('abierto');m.style.display='none'}document.body.style.overflow='';const v=m&&m.querySelector('video');if(v)v.pause()}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarVerMiMomentoVS()});
+document.getElementById('vsFormularioMomento').addEventListener('submit',function(e){e.preventDefault();const texto=document.getElementById('vsTextoMomento').value.trim(),archivo=document.getElementById('vsArchivoMomento').files[0];if(!texto&&!archivo){alert('Escribí algo o elegí una imagen o video.');return}const guardar=(data,tipo)=>{const lista=obtenerMomentosVS();lista.unshift({id:'mom-'+Date.now(),texto,archivo:data,tipo,fecha:new Date().toISOString(),autor:usuarioRegistrado||'Tu usuario'});try{localStorage.setItem('vsUniversoMomentos',JSON.stringify(lista))}catch(err){alert('No se pudo guardar. Probá con un archivo más pequeño.');return}cerrarCrearMomento();renderizarMomentosInicioVS();sincronizarContenidoPerfilVS();alert('¡Tu Momento quedó guardado en este dispositivo! ✨')};if(archivo){if(archivo.size>5*1024*1024){alert('El archivo supera los 5 MB. Elegí uno más liviano.');return}const r=new FileReader();r.onload=()=>guardar(r.result,archivo.type);r.onerror=()=>alert('No se pudo leer el archivo.');r.readAsDataURL(archivo)}else guardar('','')});
+window.addEventListener('load',function(){renderizarMomentosInicioVS();sincronizarContenidoPerfilVS()});
+</script>
+
+</body>
+</html>
